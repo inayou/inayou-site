@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>(주)이나유 INAYOU — 검색·AI 기반 B2B·B2C 벤처 스튜디오</title>
+<meta name="description" content="(주)이나유는 검색 데이터와 생성형 AI로 B2B·B2C 서비스를 직접 기획·운영하는 벤처 스튜디오입니다. Dominus·Presfi·Unimate·NeuPAI·한술·K-TravelMate.">
+<meta property="og:title" content="(주)이나유 INAYOU">
+<meta property="og:description" content="검색과 AI가 만나는 지점에서, 브랜드를 발견되게 합니다.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1C6E68">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3Crect%20x='3.2'%20y='3.2'%20width='33.6'%20height='33.6'%20rx='10'%20fill='none'%20stroke='%231C6E68'%20stroke-width='2.6'/%3E%3Cpolygon%20points='20,7.5%2024.6,20%2015.4,20'%20fill='%231C6E68'/%3E%3Cpolygon%20points='20,32.5%2024.6,20%2015.4,20'%20fill='%23E05B33'/%3E%3Ccircle%20cx='20'%20cy='20'%20r='2.6'%20fill='%23161B22'/%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+  :root{
+    --ink:#161B22; --ink-soft:#2A313B; --slate:#5C6675; --slate-2:#828C99;
+    --paper:#FAF9F6; --surface:#FFFFFF; --line:#E7E4DD; --line-strong:#D8D4CB;
+    --b2b:#1C6E68; --b2b-soft:#E4F0EE; --b2b-ink:#0F3B37;
+    --b2c:#E05B33; --b2c-soft:#FBEAE2; --b2c-ink:#7A2A13;
+    --shadow:0 1px 2px rgba(22,27,34,.04), 0 12px 32px -12px rgba(22,27,34,.14);
+    --shadow-lift:0 2px 4px rgba(22,27,34,.06), 0 26px 60px -20px rgba(22,27,34,.22);
+    --max:1160px;
+    --sans:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",Roboto,sans-serif;
+    --radius:18px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ink:#F1EFE9; --ink-soft:#D5D2CA; --slate:#9AA3B0; --slate-2:#727C89;
+      --paper:#0E1116; --surface:#161B22; --line:#252B34; --line-strong:#333B46;
+      --b2b:#4FC9BE; --b2b-soft:#123330; --b2b-ink:#B7ECE6;
+      --b2c:#FF8258; --b2c-soft:#331810; --b2c-ink:#FFC7AE;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 40px -18px rgba(0,0,0,.7);
+      --shadow-lift:0 2px 4px rgba(0,0,0,.5), 0 30px 70px -24px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="light"]{
+    --ink:#161B22; --ink-soft:#2A313B; --slate:#5C6675; --slate-2:#828C99;
+    --paper:#FAF9F6; --surface:#FFFFFF; --line:#E7E4DD; --line-strong:#D8D4CB;
+    --b2b:#1C6E68; --b2b-soft:#E4F0EE; --b2b-ink:#0F3B37;
+    --b2c:#E05B33; --b2c-soft:#FBEAE2; --b2c-ink:#7A2A13;
+    --shadow:0 1px 2px rgba(22,27,34,.04), 0 12px 32px -12px rgba(22,27,34,.14);
+    --shadow-lift:0 2px 4px rgba(22,27,34,.06), 0 26px 60px -20px rgba(22,27,34,.22);
+  }
+  :root[data-theme="dark"]{
+    --ink:#F1EFE9; --ink-soft:#D5D2CA; --slate:#9AA3B0; --slate-2:#727C89;
+    --paper:#0E1116; --surface:#161B22; --line:#252B34; --line-strong:#333B46;
+    --b2b:#4FC9BE; --b2b-soft:#123330; --b2b-ink:#B7ECE6;
+    --b2c:#FF8258; --b2c-soft:#331810; --b2c-ink:#FFC7AE;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 40px -18px rgba(0,0,0,.7);
+    --shadow-lift:0 2px 4px rgba(0,0,0,.5), 0 30px 70px -24px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    font-family:var(--sans); background:var(--paper); color:var(--ink);
+    line-height:1.62; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    letter-spacing:-.01em;
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px}
+  a{color:inherit; text-decoration:none}
+  ::selection{background:var(--b2b); color:#fff}
+
+  .eyebrow{
+    font-size:.72rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--slate); display:inline-flex; align-items:center; gap:.6em;
+  }
+  .eyebrow::before{content:""; width:22px; height:1.5px; background:currentColor; opacity:.55}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:color-mix(in srgb, var(--paper) 82%, transparent);
+    backdrop-filter:saturate(1.4) blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex; align-items:center; justify-content:space-between; height:66px; gap:18px}
+  .brand{display:flex; align-items:center; gap:10px}
+  .logo-mark{width:30px; height:30px; flex:none}
+  .brand .mark{font-weight:800; letter-spacing:.16em; font-size:1.02rem}
+  .brand .ko{font-size:.78rem; color:var(--slate); letter-spacing:.02em}
+  nav.links{display:flex; gap:28px; align-items:center}
+  nav.links a{font-size:.9rem; color:var(--slate); font-weight:500; transition:color .18s; white-space:nowrap}
+  nav.links a:hover{color:var(--ink)}
+  .nav-right{display:flex; align-items:center; gap:12px}
+  .lang-btn{
+    font-size:.8rem; font-weight:600; color:var(--slate); background:none;
+    border:1px solid var(--line-strong); padding:7px 12px; border-radius:999px;
+    cursor:pointer; font-family:inherit; transition:color .18s, border-color .18s;
+  }
+  .lang-btn:hover{color:var(--ink); border-color:var(--ink)}
+  .nav-cta{
+    font-size:.86rem; font-weight:600; color:var(--ink); white-space:nowrap;
+    border:1px solid var(--line-strong); padding:8px 16px; border-radius:999px;
+    transition:border-color .18s, background .18s, color .18s;
+  }
+  .nav-cta:hover{border-color:var(--ink); background:var(--ink); color:var(--paper)}
+  @media (max-width:900px){ nav.links{display:none} }
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line)}
+  #signal{position:absolute; inset:0; width:100%; height:100%; z-index:0; opacity:.9}
+  .hero-in{position:relative; z-index:2; padding:96px 0 84px}
+  .hero h1{
+    font-size:clamp(2.25rem,5.4vw,4rem); line-height:1.08; font-weight:800;
+    letter-spacing:-.035em; text-wrap:balance; margin:22px 0 0; max-width:17ch;
+  }
+  .hero h1 .g{
+    background:linear-gradient(100deg,var(--b2b),var(--b2c));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lead{
+    margin-top:26px; font-size:clamp(1.02rem,1.7vw,1.22rem); color:var(--slate);
+    max-width:52ch; line-height:1.7;
+  }
+  .hero-chips{display:flex; gap:12px; margin-top:34px; flex-wrap:wrap}
+  .chip{
+    display:inline-flex; align-items:center; gap:9px; padding:9px 16px 9px 13px;
+    border-radius:999px; font-size:.88rem; font-weight:600; background:var(--surface);
+    border:1px solid var(--line); box-shadow:var(--shadow);
+  }
+  .chip .sw{width:9px;height:9px;border-radius:50%}
+  .chip.b2b .sw{background:var(--b2b)} .chip.b2c .sw{background:var(--b2c)}
+  .chip small{color:var(--slate); font-weight:500}
+
+  /* ---------- OVERVIEW STRIP ---------- */
+  .overview{border-bottom:1px solid var(--line); background:var(--surface)}
+  .ov-grid{display:grid; grid-template-columns:repeat(4,1fr)}
+  .ov-item{padding:34px 26px; border-left:1px solid var(--line)}
+  .ov-item:first-child{border-left:none; padding-left:0}
+  .ov-item .n{font-size:2.1rem; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1}
+  .ov-item .n span{font-size:1rem; color:var(--slate); font-weight:600; margin-left:3px}
+  .ov-item .l{margin-top:10px; font-size:.86rem; color:var(--slate); line-height:1.5}
+  @media (max-width:760px){
+    .ov-grid{grid-template-columns:repeat(2,1fr)}
+    .ov-item{border-left:none; border-top:1px solid var(--line); padding:26px 0}
+    .ov-item:nth-child(2){border-top:none}
+    .ov-item:nth-child(even){padding-left:26px; border-left:1px solid var(--line)}
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section.block{padding:92px 0}
+  .sec-head{display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; margin-bottom:44px}
+  .sec-head h2{font-size:clamp(1.7rem,3vw,2.35rem); font-weight:800; letter-spacing:-.03em; line-height:1.12; text-wrap:balance}
+  .sec-head p{color:var(--slate); max-width:46ch; margin-top:12px; font-size:1rem}
+  .division-tag{
+    display:inline-flex; align-items:center; gap:8px; font-size:.78rem; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; padding:6px 12px; border-radius:999px;
+  }
+  .division-tag.b2b{color:var(--b2b-ink); background:var(--b2b-soft)}
+  .division-tag.b2c{color:var(--b2c-ink); background:var(--b2c-soft)}
+  .division-tag .sw{width:8px;height:8px;border-radius:50%}
+  .division-tag.b2b .sw{background:var(--b2b)} .division-tag.b2c .sw{background:var(--b2c)}
+
+  .cards{display:grid; gap:20px; grid-template-columns:repeat(3,1fr)}
+  .cards.two{grid-template-columns:repeat(2,1fr)}
+  @media (max-width:900px){ .cards,.cards.two{grid-template-columns:1fr 1fr} }
+  @media (max-width:600px){ .cards,.cards.two{grid-template-columns:1fr} }
+
+  .card{
+    position:relative; background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--radius); padding:26px 24px 22px; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; min-height:220px;
+    transition:transform .22s cubic-bezier(.2,.7,.3,1), box-shadow .22s, border-color .22s;
+    overflow:hidden;
+  }
+  .card::before{content:""; position:absolute; top:0; left:0; right:0; height:3px; opacity:.9}
+  .card.t-b2b::before{background:linear-gradient(90deg,var(--b2b),transparent 85%)}
+  .card.t-b2c::before{background:linear-gradient(90deg,var(--b2c),transparent 85%)}
+  .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lift)}
+  .card.t-b2b:hover{border-color:var(--b2b)}
+  .card.t-b2c:hover{border-color:var(--b2c)}
+  .card .idx{font-size:.74rem; font-weight:700; letter-spacing:.12em; color:var(--slate-2); font-variant-numeric:tabular-nums}
+  .card h3{font-size:1.32rem; font-weight:800; letter-spacing:-.02em; margin-top:12px; display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+  .card .domain{font-size:.82rem; color:var(--slate); margin-top:5px; font-weight:500}
+  .card .domain:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
+  .card p.desc{font-size:.94rem; color:var(--ink-soft); margin-top:14px; line-height:1.6; flex:1}
+  .card .foot{display:flex; align-items:center; justify-content:space-between; margin-top:18px; gap:10px}
+  .card .kind{font-size:.76rem; font-weight:600; color:var(--slate); padding:4px 10px; border:1px solid var(--line); border-radius:999px; white-space:nowrap}
+  .card .go{font-size:.85rem; font-weight:600; display:inline-flex; align-items:center; gap:5px; transition:gap .18s; white-space:nowrap}
+  .card.t-b2b .go{color:var(--b2b)} .card.t-b2c .go{color:var(--b2c)}
+  .card:hover .go{gap:9px}
+
+  /* ---------- CARD PREVIEW (self-contained browser mock; swap for real screenshot) ---------- */
+  .card-preview{border-radius:11px; overflow:hidden; border:1px solid var(--line); margin-bottom:18px; background:var(--surface)}
+  .bchrome{display:flex; align-items:center; gap:5px; padding:7px 9px; background:color-mix(in srgb,var(--ink) 5%, var(--surface)); border-bottom:1px solid var(--line)}
+  .bdot{width:7px;height:7px;border-radius:50%;background:var(--line-strong)}
+  .burl{flex:1; margin-left:8px; font-size:.58rem; color:var(--slate-2); background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:2px 8px; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .bscreen{position:relative; height:158px; padding:13px; overflow:hidden}
+  .pv-t{font-size:.68rem; font-weight:700; color:var(--ink); letter-spacing:-.01em}
+  .pv-sub{font-size:.56rem; color:var(--slate); line-height:1.3}
+  .pv-row{display:flex; align-items:center; gap:6px}
+  .pv-between{display:flex; align-items:center; justify-content:space-between; gap:6px}
+  .pv-pill{font-size:.54rem; font-weight:700; padding:2px 7px; border-radius:999px; white-space:nowrap}
+  .pv-card{background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:8px 9px}
+  .pv-bar{height:5px; border-radius:3px; background:var(--line); overflow:hidden}
+  .pv-bar > i{display:block; height:100%; border-radius:3px}
+  .pv-btn{font-size:.58rem; font-weight:700; color:#fff; padding:7px 0; border-radius:7px; text-align:center}
+
+  /* ---------- NEUPAI / CASES ---------- */
+  .neupai{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .cases-eyebrow{font-size:.74rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--slate); margin-bottom:20px; display:flex; align-items:center; gap:12px}
+  .cases-eyebrow::after{content:""; flex:1; height:1px; background:var(--line)}
+  .cases-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+  @media (max-width:900px){ .cases-grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:520px){ .cases-grid{grid-template-columns:1fr} }
+  .case-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:16px;
+    padding:22px 20px; display:flex; flex-direction:column; gap:12px;
+    transition:border-color .2s, transform .2s, box-shadow .2s;
+  }
+  .case-card:hover{border-color:var(--b2b); transform:translateY(-3px); box-shadow:var(--shadow)}
+  .case-mono{
+    width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:1.05rem; color:var(--b2b-ink); background:var(--b2b-soft); letter-spacing:-.02em;
+  }
+  .case-card .cat{font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--b2b)}
+  .case-card h4{font-size:1.06rem; font-weight:700; letter-spacing:-.01em; line-height:1.25}
+  .case-card .cdomain{font-size:.8rem; color:var(--slate); word-break:break-all}
+  .case-card p{font-size:.86rem; color:var(--ink-soft); line-height:1.55; margin-top:2px}
+  .neupai-note{margin-top:28px; font-size:.82rem; color:var(--slate-2)}
+
+  /* ---------- APPROACH ---------- */
+  .approach{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .appr-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:44px}
+  @media (max-width:800px){ .appr-grid{grid-template-columns:1fr; gap:34px} }
+  .appr .num{font-size:.8rem; font-weight:700; letter-spacing:.14em; color:var(--slate-2); font-variant-numeric:tabular-nums}
+  .appr h4{font-size:1.18rem; font-weight:700; margin-top:12px; letter-spacing:-.01em}
+  .appr p{color:var(--slate); font-size:.95rem; margin-top:10px; line-height:1.65}
+  .appr .bar{width:38px;height:3px;border-radius:2px;margin-top:16px;background:linear-gradient(90deg,var(--b2b),var(--b2c))}
+
+  /* ---------- CONTACT ---------- */
+  .contact-card{
+    background:linear-gradient(135deg, color-mix(in srgb,var(--b2b) 12%, var(--surface)), color-mix(in srgb,var(--b2c) 10%, var(--surface)));
+    border:1px solid var(--line); border-radius:26px; padding:clamp(34px,5vw,64px);
+    display:grid; grid-template-columns:1.1fr .9fr; gap:44px; align-items:center;
+  }
+  @media (max-width:760px){ .contact-card{grid-template-columns:1fr; gap:30px} }
+  .contact-card h2{font-size:clamp(1.7rem,3.4vw,2.5rem); font-weight:800; letter-spacing:-.03em; line-height:1.12; text-wrap:balance}
+  .contact-card p{color:var(--ink-soft); margin-top:14px; font-size:1.02rem; max-width:40ch}
+  .contact-actions{display:flex; flex-direction:column; gap:14px}
+  .field{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px 18px}
+  .field .lab{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--slate); font-weight:700}
+  .field .val{font-size:1.05rem; font-weight:600; margin-top:4px}
+  .btn-primary{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--ink); color:var(--paper); font-weight:600; font-size:.98rem;
+    padding:16px 20px; border-radius:14px; border:none; cursor:pointer; transition:transform .16s, opacity .16s; font-family:inherit;
+  }
+  .btn-primary:hover{transform:translateY(-2px); opacity:.94}
+
+  /* ---------- FOOTER ---------- */
+  footer.ft{border-top:1px solid var(--line); background:var(--paper); padding:50px 0 40px}
+  .ft-top{display:flex; justify-content:space-between; gap:30px; flex-wrap:wrap; align-items:flex-start}
+  .ft .brand .mark{font-size:1.05rem}
+  .ft-desc{color:var(--slate); font-size:.9rem; max-width:34ch; margin-top:14px; line-height:1.6}
+  .ft-cols{display:flex; gap:56px; flex-wrap:wrap}
+  .ft-col h5{font-size:.74rem; letter-spacing:.14em; text-transform:uppercase; color:var(--slate-2); font-weight:700; margin-bottom:14px}
+  .ft-col a{display:block; color:var(--slate); font-size:.9rem; padding:5px 0; transition:color .16s}
+  .ft-col a:hover{color:var(--ink)}
+  .ft-bottom{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:44px; padding-top:22px; border-top:1px solid var(--line); color:var(--slate-2); font-size:.82rem}
+  .theme-toggle{background:none;border:1px solid var(--line-strong);color:var(--slate);border-radius:999px;padding:6px 13px;font-size:.8rem;cursor:pointer;font-family:inherit;transition:border-color .16s,color .16s}
+  .theme-toggle:hover{color:var(--ink);border-color:var(--ink)}
+  .mock-note{font-size:.72rem;color:var(--slate-2)}
+  :focus-visible{outline:2px solid var(--b2b); outline-offset:3px; border-radius:4px}
+</style>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="INAYOU">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true" fill="none">
+        <rect x="3.2" y="3.2" width="33.6" height="33.6" rx="10" stroke="var(--b2b)" stroke-width="2.6"/>
+        <polygon points="20,7.5 24.6,20 15.4,20" fill="var(--b2b)"/>
+        <polygon points="20,32.5 24.6,20 15.4,20" fill="var(--b2c)"/>
+        <circle cx="20" cy="20" r="2.6" fill="var(--ink)"/>
+      </svg>
+      <span class="mark">INAYOU</span><span class="ko">(주)이나유</span>
+    </a>
+    <nav class="links">
+      <a href="#about" data-i18n="nav.about">회사소개</a>
+      <a href="#b2b" data-i18n="nav.b2b">B2B 사업</a>
+      <a href="#neupai">NeuPAI</a>
+      <a href="#b2c" data-i18n="nav.b2c">B2C 사업</a>
+      <a href="#approach" data-i18n="nav.approach">접근 방식</a>
+    </nav>
+    <div class="nav-right">
+      <button class="lang-btn" id="langBtn" type="button">EN</button>
+      <a class="nav-cta" href="#contact" data-i18n="nav.cta">사업 문의</a>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <canvas id="signal" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <span class="eyebrow">Search &times; AI Growth Studio</span>
+    <h1 data-i18n="hero.h1">검색과 AI가 만나는 지점에서, <span class="g">브랜드를 발견되게</span> 합니다</h1>
+    <p class="lead" data-i18n="hero.lead">(주)이나유는 검색 데이터와 생성형 AI를 기반으로 B2B·B2C 서비스를 직접 기획하고 운영하는 벤처 스튜디오입니다. 우리는 사람들이 찾는 순간, 브랜드가 답이 되도록 만듭니다.</p>
+    <div class="hero-chips">
+      <span class="chip b2b"><span class="sw"></span><span data-i18n="hero.chipB2b">B2B <small>· 기업의 발견 최적화</small></span></span>
+      <span class="chip b2c"><span class="sw"></span><span data-i18n="hero.chipB2c">B2C <small>· 일상을 위한 자체 브랜드</small></span></span>
+    </div>
+  </div>
+</section>
+
+<section class="overview" id="about" aria-label="회사 개요">
+  <div class="wrap ov-grid">
+    <div class="ov-item">
+      <div class="n" data-i18n="ov.n1">2<span>부문</span></div>
+      <div class="l" data-i18n="ov.l1">B2B와 B2C, 두 축으로<br>서비스를 설계·운영합니다</div>
+    </div>
+    <div class="ov-item">
+      <div class="n" data-i18n="ov.n2">6<span>개</span></div>
+      <div class="l" data-i18n="ov.l2">현재 운영 및 준비 중인<br>자체 서비스 라인업</div>
+    </div>
+    <div class="ov-item">
+      <div class="n">SEO<span>·AEO·GEO</span></div>
+      <div class="l" data-i18n="ov.l3">검색·AI 답변·생성엔진까지<br>아우르는 발견 최적화 역량</div>
+    </div>
+    <div class="ov-item">
+      <div class="n">100<span>%</span></div>
+      <div class="l" data-i18n="ov.l4">외주가 아닌 자체 기획·<br>개발·운영 기반 프로덕트</div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="b2b">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="division-tag b2b"><span class="sw"></span>B2B Division</span>
+        <h2 style="margin-top:16px" data-i18n="b2b.h2">기업의 성장을 설계하는<br>발견 최적화 솔루션</h2>
+      </div>
+      <p data-i18n="b2b.p">검색과 AI 환경에서 브랜드가 발견되고, 신뢰받고, 선택받도록 &mdash; 평판 관리부터 PR, 입시 전환, 검색 최적화까지 데이터 기반 솔루션을 제공합니다.</p>
+    </div>
+
+    <div class="cards">
+      <a class="card t-b2b" href="https://dom-in-us.com" target="_blank" rel="noopener">
+        <!-- PREVIEW: Dominus — replace .bscreen with real screenshot <img> -->
+        <div class="card-preview">
+          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">dom-in-us.com/dashboard</span></div>
+          <div class="bscreen">
+            <div class="pv-between"><span class="pv-t">브랜드 평판 모니터링</span><span class="pv-pill" style="background:var(--b2b-soft);color:var(--b2b-ink)">&#9650; 안정</span></div>
+            <svg viewBox="0 0 200 44" preserveAspectRatio="none" style="width:100%;height:44px;margin-top:9px" aria-hidden="true">
+              <polygon fill="var(--b2b-soft)" points="0,32 22,26 44,28 66,18 88,22 110,12 132,16 154,9 176,13 200,5 200,44 0,44"/>
+              <polyline fill="none" stroke="var(--b2b)" stroke-width="2" points="0,32 22,26 44,28 66,18 88,22 110,12 132,16 154,9 176,13 200,5"/>
+            </svg>
+            <div class="pv-row" style="margin-top:10px;gap:7px">
+              <div class="pv-card" style="flex:1"><div class="pv-sub">긍정</div><div class="pv-t" style="color:var(--b2b)">72%</div></div>
+              <div class="pv-card" style="flex:1"><div class="pv-sub">부정</div><div class="pv-t" style="color:var(--b2c)">8%</div></div>
+              <div class="pv-card" style="flex:1"><div class="pv-sub">신규 이슈</div><div class="pv-t">3</div></div>
+            </div>
+          </div>
+        </div>
+        <span class="idx">B2B / 01</span>
+        <h3 data-i18n="card.dominus.h">Dominus <span style="font-weight:600;color:var(--slate);font-size:.9rem">dom-in-us</span></h3>
+        <span class="domain">dom-in-us.com</span>
+        <p class="desc" data-i18n="card.dominus.d">AI가 네이버·뉴스·SNS의 브랜드 평판을 실시간으로 모니터링하고, 긍정 콘텐츠 제작부터 부정글 대응까지 직접 운영 대행하는 브랜드 평판 관리 솔루션.</p>
+        <div class="foot"><span class="kind" data-i18n="card.dominus.k">브랜드 평판 관리</span><span class="go" data-i18n="go.visit">서비스 보기 &rarr;</span></div>
+      </a>
+
+      <a class="card t-b2b" href="https://presfi.io" target="_blank" rel="noopener">
+        <!-- PREVIEW: Presfi — replace .bscreen with real screenshot <img> -->
+        <div class="card-preview">
+          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">presfi.io/media-index</span></div>
+          <div class="bscreen">
+            <div class="pv-between"><span class="pv-t">미디어 파워 인덱스</span><span class="pv-sub">150+ 매체</span></div>
+            <div style="margin-top:10px;display:flex;flex-direction:column;gap:11px">
+              <div>
+                <div class="pv-between"><span class="pv-sub" style="color:var(--ink);font-weight:600">매일○○경제</span><span class="pv-pill" style="background:var(--b2b-soft);color:var(--b2b-ink)">S+</span></div>
+                <div class="pv-bar" style="margin-top:5px"><i style="width:94%;background:var(--b2b)"></i></div>
+              </div>
+              <div>
+                <div class="pv-between"><span class="pv-sub" style="color:var(--ink);font-weight:600">○○일보</span><span class="pv-pill" style="background:var(--b2b-soft);color:var(--b2b-ink)">A</span></div>
+                <div class="pv-bar" style="margin-top:5px"><i style="width:74%;background:var(--b2b);opacity:.7"></i></div>
+              </div>
+              <div>
+                <div class="pv-between"><span class="pv-sub" style="color:var(--ink);font-weight:600">○○뉴스</span><span class="pv-pill" style="border:1px solid var(--line-strong);color:var(--slate)">B</span></div>
+                <div class="pv-bar" style="margin-top:5px"><i style="width:58%;background:var(--slate-2)"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="idx">B2B / 02</span>
+        <h3>Presfi</h3>
+        <span class="domain">presfi.io</span>
+        <p class="desc" data-i18n="card.presfi.d">국내 언론사를 검색 영향력(DR)·PR 효율로 등급화하고, 단순 보도자료가 아닌 SEO·GEO 기획기사로 검색과 AI 답변에 오래 남는 PR을 설계합니다.</p>
+        <div class="foot"><span class="kind" data-i18n="card.presfi.k">PR &middot; 미디어 인텔리전스</span><span class="go" data-i18n="go.visit">서비스 보기 &rarr;</span></div>
+      </a>
+
+      <a class="card t-b2b" href="https://unimate.com" target="_blank" rel="noopener">
+        <!-- PREVIEW: Unimate — replace .bscreen with real screenshot <img> -->
+        <div class="card-preview">
+          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">unimate.com/admissions</span></div>
+          <div class="bscreen">
+            <div class="pv-t">입시 상담 AI</div>
+            <div class="pv-row" style="margin-top:8px"><span class="pv-card" style="font-size:.56rem;color:var(--slate);border-radius:8px 8px 8px 3px">수시 지원 가능할까요?</span></div>
+            <div class="pv-row" style="justify-content:flex-end;margin-top:6px"><span class="pv-card" style="font-size:.56rem;background:var(--b2b-soft);color:var(--b2b-ink);border-color:transparent;border-radius:8px 8px 3px 8px">내신 기준 합격권이에요 &#10003;</span></div>
+            <div class="pv-card" style="margin-top:10px">
+              <div class="pv-between"><span class="pv-sub">합격 예측</span><span class="pv-t" style="color:var(--b2b)">78%</span></div>
+              <div class="pv-bar" style="margin-top:6px"><i style="width:78%;background:var(--b2b)"></i></div>
+            </div>
+            <div class="pv-btn" style="background:var(--b2c);margin-top:10px">상담 신청</div>
+          </div>
+        </div>
+        <span class="idx">B2B / 03</span>
+        <h3>Unimate</h3>
+        <span class="domain">unimate.com</span>
+        <p class="desc" data-i18n="card.unimate.d">대학 입학처를 위한 입시 전환 SaaS. AI 챗봇 상담, 성적 기반 합격 예측, 리드 CRM으로 흩어진 문의를 상담·등록까지 잇습니다.</p>
+        <div class="foot"><span class="kind" data-i18n="card.unimate.k">입시 마케팅 SaaS</span><span class="go" data-i18n="go.visit">서비스 보기 &rarr;</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="block neupai" id="neupai">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="division-tag b2b"><span class="sw"></span>Featured Project &middot; B2B</span>
+        <h2 style="margin-top:16px" data-i18n="neupai.h2">검색을 넘어 AI 답변까지,<br>인용되는 콘텐츠를 만드는 NeuPAI</h2>
+      </div>
+      <p data-i18n="neupai.p">SEO 기반 콘텐츠 빌딩으로 검색엔진(SEO)&middot;AI 답변(AEO)&middot;생성엔진(GEO)에 동시에 노출되는 발견 최적화 솔루션. 업종을 가리지 않고 적용됩니다.</p>
+    </div>
+
+    <div class="cases-eyebrow" data-i18n="cases.eyebrow">적용 사례 &middot; Case Studies</div>
+    <div class="cases-grid">
+      <a class="case-card" href="https://brownlawfirm.imweb.me/" target="_blank" rel="noopener">
+        <div class="case-mono">브</div>
+        <div class="cat" data-i18n="case.brown.c">법률 &middot; 로펌</div>
+        <h4 data-i18n="case.brown.h">법률사무소 브라운</h4>
+        <div class="cdomain">brownlawfirm.imweb.me</div>
+        <p data-i18n="case.brown.d">군형사 특화 로펌의 전문성(EEAT)을 검색과 AI가 신뢰하는 콘텐츠 구조로 재설계.</p>
+      </a>
+
+      <a class="case-card" href="https://tech42.com" target="_blank" rel="noopener">
+        <div class="case-mono">테</div>
+        <div class="cat" data-i18n="case.tech42.c">테크 미디어</div>
+        <h4 data-i18n="case.tech42.h">테크42</h4>
+        <div class="cdomain">tech42.com</div>
+        <p data-i18n="case.tech42.d">AI 테크 저널리즘 매체의 기사를 검색 상위 노출과 생성엔진 인용으로 연결.</p>
+      </a>
+
+      <a class="case-card" href="https://daily365.com" target="_blank" rel="noopener">
+        <div class="case-mono">데</div>
+        <div class="cat" data-i18n="case.daily.c">종합 뉴스</div>
+        <h4 data-i18n="case.daily.h">데일리365</h4>
+        <div class="cdomain">daily365.com</div>
+        <p data-i18n="case.daily.d">종합 뉴스 콘텐츠의 검색 노출과 AI 답변 인용 가능성을 높이는 구조 최적화.</p>
+      </a>
+
+      <a class="case-card" href="https://hurease.com/" target="_blank" rel="noopener">
+        <div class="case-mono">휴</div>
+        <div class="cat" data-i18n="case.hurease.c">뷰티 &middot; 커머스</div>
+        <h4 data-i18n="case.hurease.h">휴리즈 HUREASE</h4>
+        <div class="cdomain">hurease.com</div>
+        <p data-i18n="case.hurease.d">바디케어 브랜드의 제품 콘텐츠를 검색&middot;쇼핑&middot;AI 추천 노출에 맞게 최적화.</p>
+      </a>
+    </div>
+    <p class="neupai-note" data-i18n="neupai.note">* 각 사례는 NeuPAI의 SEO&middot;AEO&middot;GEO 방법론을 적용한 프로젝트 예시입니다.</p>
+  </div>
+</section>
+
+<section class="block" id="b2c">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="division-tag b2c"><span class="sw"></span>B2C Division</span>
+        <h2 style="margin-top:16px" data-i18n="b2c.h2">일상 속에서 사랑받는<br>자체 소비자 브랜드</h2>
+      </div>
+      <p data-i18n="b2c.p">사람들의 검색과 취향에서 출발해, 실제 일상에 스며드는 소비자 서비스를 직접 만들고 키웁니다.</p>
+    </div>
+
+    <div class="cards two">
+      <a class="card t-b2c" href="#contact">
+        <!-- PREVIEW: 한술 — replace .bscreen with real screenshot <img> -->
+        <div class="card-preview">
+          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">hansool &middot; 전통주 추천</span></div>
+          <div class="bscreen">
+            <div class="pv-between"><span class="pv-t">오늘의 추천</span><span class="pv-pill" style="border:1px solid var(--line-strong);color:var(--slate)">KO &#9662;</span></div>
+            <div class="pv-card" style="margin-top:9px">
+              <div class="pv-between"><span class="pv-t" style="font-size:.74rem">화요 41</span><span class="pv-pill" style="background:var(--b2c-soft);color:var(--b2c-ink)">매치 95%</span></div>
+              <div style="margin-top:9px;display:flex;flex-direction:column;gap:6px">
+                <div class="pv-row"><span class="pv-sub" style="width:30px">단맛</span><div class="pv-bar" style="flex:1"><i style="width:40%;background:var(--b2c)"></i></div></div>
+                <div class="pv-row"><span class="pv-sub" style="width:30px">바디</span><div class="pv-bar" style="flex:1"><i style="width:78%;background:var(--b2c)"></i></div></div>
+                <div class="pv-row"><span class="pv-sub" style="width:30px">청량</span><div class="pv-bar" style="flex:1"><i style="width:55%;background:var(--b2c)"></i></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="idx">B2C / 01</span>
+        <h3 data-i18n="card.hansool.h">한술 <span style="font-weight:600;color:var(--slate);font-size:.9rem">Hansool</span></h3>
+        <span class="domain" data-i18n="card.hansool.dom">준비 중 · 다국어 서비스</span>
+        <p class="desc" data-i18n="card.hansool.d">맛&middot;도수&middot;모임&middot;분위기를 묻고 취향에 맞는 대한민국 전통주를 추천 &mdash; 양조장, 마실 수 있는 곳, 시음 행사까지 잇는 전통주 큐레이션. 12개 언어와 글로벌 SEO를 지원합니다.</p>
+        <div class="foot"><span class="kind" data-i18n="card.hansool.k">전통주 추천 &middot; 글로벌</span><span class="go" data-i18n="go.visit">서비스 보기 &rarr;</span></div>
+      </a>
+
+      <a class="card t-b2c" href="https://ktravelmate.com" target="_blank" rel="noopener">
+        <!-- PREVIEW: K-TravelMate — replace .bscreen with real screenshot <img> -->
+        <div class="card-preview">
+          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">ktravelmate.com</span></div>
+          <div class="bscreen">
+            <div class="pv-card pv-row" style="gap:8px"><span class="pv-sub" style="flex:1;color:var(--ink);font-weight:600">서울 &middot; 8월 &middot; 2명</span><span class="pv-pill" style="background:var(--b2c);color:#fff">검색</span></div>
+            <div class="pv-card" style="margin-top:10px;display:flex;gap:10px;align-items:center">
+              <div style="width:46px;height:46px;border-radius:8px;flex:none;background:linear-gradient(135deg,var(--b2b),var(--b2c))"></div>
+              <div style="flex:1;min-width:0">
+                <div class="pv-t" style="font-size:.66rem">N서울타워 나이트워크</div>
+                <div class="pv-sub" style="margin-top:1px">서울 &middot; 야간 체험 &middot; ★ 4.9</div>
+                <div class="pv-t" style="color:var(--b2c);margin-top:3px">₩25,000</div>
+              </div>
+            </div>
+            <div class="pv-sub" style="margin-top:9px;text-align:center">AI 검색 유입에 맞춘 개인화 추천</div>
+          </div>
+        </div>
+        <span class="idx">B2C / 02</span>
+        <h3>K-TravelMate</h3>
+        <span class="domain">ktravelmate.com</span>
+        <p class="desc" data-i18n="card.ktm.d">AI 검색으로 한국 여행과 서울의 행사&middot;체험을 찾고 예약하는 여행 플랫폼. 검색 유입 맥락에 맞춘 개인화 추천으로 여행자의 다음 순간을 이어줍니다.</p>
+        <div class="foot"><span class="kind" data-i18n="card.ktm.k">트래블 &middot; 예약</span><span class="go" data-i18n="go.visit">서비스 보기 &rarr;</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="block approach" id="approach">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:52px">
+      <div>
+        <span class="eyebrow">How we build</span>
+        <h2 style="margin-top:16px" data-i18n="appr.h2">이나유가 일하는 방식</h2>
+      </div>
+      <p data-i18n="appr.p">데이터에서 시작해, 발견을 설계하고, 서비스를 직접 운영합니다.</p>
+    </div>
+    <div class="appr-grid">
+      <div class="appr">
+        <div class="num">01 &mdash; DATA</div>
+        <h4 data-i18n="appr.h1">검색 데이터에서 출발</h4>
+        <p data-i18n="appr.p1">사람들이 실제로 무엇을 찾는지, 검색과 의도 데이터를 분석해 시장의 빈틈과 기회를 정의합니다.</p>
+        <div class="bar"></div>
+      </div>
+      <div class="appr">
+        <div class="num">02 &mdash; DISCOVERY</div>
+        <h4 data-i18n="appr.h2b">발견을 설계</h4>
+        <p data-i18n="appr.p2">SEO·AEO·GEO를 아우르는 콘텐츠와 구조로, 검색엔진과 AI 답변 양쪽에서 브랜드가 선택되게 만듭니다.</p>
+        <div class="bar"></div>
+      </div>
+      <div class="appr">
+        <div class="num">03 &mdash; OWN</div>
+        <h4 data-i18n="appr.h3">직접 운영</h4>
+        <p data-i18n="appr.p3">대행에 그치지 않고 B2B·B2C 서비스를 자체 프로덕트로 운영하며 데이터를 다시 제품에 되먹입니다.</p>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <div>
+        <span class="eyebrow">Contact</span>
+        <h2 style="margin-top:16px" data-i18n="contact.h2">함께 만들 기회를<br>이야기해요</h2>
+        <p data-i18n="contact.p">제휴·투자·서비스 도입 등 어떤 문의든 환영합니다. (주)이나유가 검색과 AI로 만드는 성장에 함께하세요.</p>
+      </div>
+      <div class="contact-actions">
+        <div class="field">
+          <div class="lab">Email</div>
+          <div class="val">inayou@gmail.com</div>
+        </div>
+        <div class="field">
+          <div class="lab">Business</div>
+          <div class="val">(주)이나유 · INAYOU Inc.</div>
+        </div>
+        <button class="btn-primary" type="button" data-i18n="contact.btn" onclick="location.href='mailto:inayou@gmail.com?subject=%5BINAYOU%5D%20Business%20inquiry'">문의 메일 보내기 &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div>
+        <div class="brand">
+          <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true" fill="none">
+            <circle cx="16.5" cy="16.5" r="10.5" stroke="var(--b2b)" stroke-width="3.4"/>
+            <line x1="24.2" y1="24.2" x2="33.5" y2="33.5" stroke="var(--b2b)" stroke-width="3.4" stroke-linecap="round"/>
+            <circle cx="16.5" cy="16.5" r="3.7" fill="var(--b2c)"/>
+          </svg>
+          <span class="mark">INAYOU</span><span class="ko">(주)이나유</span>
+        </div>
+        <p class="ft-desc" data-i18n="ft.desc">검색 데이터와 AI로 B2B·B2C 서비스를 기획하고 운영하는 벤처 스튜디오.</p>
+      </div>
+      <div class="ft-cols">
+        <div class="ft-col">
+          <h5>B2B</h5>
+          <a href="https://dom-in-us.com" target="_blank" rel="noopener">Dominus · dom-in-us</a>
+          <a href="https://presfi.io" target="_blank" rel="noopener">Presfi</a>
+          <a href="https://unimate.com" target="_blank" rel="noopener">Unimate</a>
+          <a href="#neupai">NeuPAI (SEO·AEO·GEO)</a>
+        </div>
+        <div class="ft-col">
+          <h5>B2C</h5>
+          <a href="#b2c">한술 Hansool</a>
+          <a href="https://ktravelmate.com" target="_blank" rel="noopener">K-TravelMate</a>
+        </div>
+        <div class="ft-col">
+          <h5>Company</h5>
+          <a href="#about" data-i18n="ft.about">회사소개</a>
+          <a href="#approach" data-i18n="ft.approach">접근 방식</a>
+          <a href="#contact" data-i18n="ft.contact">문의</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span data-i18n="ft.copy">© 2026 INAYOU Inc. (주)이나유. <span class="mock-note">· 데모용 목업 — 서비스 설명·수치는 예시입니다.</span></span>
+      <button class="theme-toggle" id="themeBtn" type="button" data-i18n="ft.theme">◐ 테마 전환</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- i18n ----------
+  var I18N = {
+    en: {
+      "nav.about":"About","nav.b2b":"B2B","nav.b2c":"B2C","nav.approach":"Approach","nav.cta":"Contact",
+      "hero.h1":"We make brands <span class=\"g\">discoverable</span> where search meets AI",
+      "hero.lead":"INAYOU is a venture studio that plans and runs its own B2B and B2C services, powered by search data and generative AI. We make your brand the answer the moment people search.",
+      "hero.chipB2b":"B2B <small>· Discovery for business</small>",
+      "hero.chipB2c":"B2C <small>· Our own consumer brands</small>",
+      "ov.n1":"2<span>divisions</span>","ov.l1":"We design & operate services<br>across B2B and B2C",
+      "ov.n2":"6<span>services</span>","ov.l2":"Own products, live and<br>in the pipeline",
+      "ov.l3":"Discovery optimization across search,<br>AI answers and generative engines",
+      "ov.l4":"In-house planning, building<br>and operating — not outsourced",
+      "b2b.h2":"Discovery-optimization<br>solutions that drive growth",
+      "b2b.p":"So brands get found, trusted and chosen across search and AI — from reputation management and PR to admissions conversion and search optimization.",
+      "card.dominus.h":"Dominus <span style=\"font-weight:600;color:var(--slate);font-size:.9rem\">dom-in-us</span>",
+      "card.dominus.d":"A brand-reputation solution: AI monitors your reputation across Naver, news and social in real time, and we run everything from positive content creation to negative-post response.",
+      "card.dominus.k":"Reputation management",
+      "card.presfi.d":"We grade Korean media by search authority (DR) and PR efficiency, and design PR that lasts in search and AI answers — feature articles built for SEO·GEO, not one-off press releases.",
+      "card.presfi.k":"PR · Media intelligence",
+      "card.unimate.d":"An admissions-conversion SaaS for university admissions offices. AI chatbot counseling, grade-based admission prediction and a lead CRM turn scattered inquiries into consultations and enrollments.",
+      "card.unimate.k":"Admissions SaaS",
+      "go.visit":"Visit &rarr;",
+      "neupai.h2":"NeuPAI — content built to be cited,<br>from search to AI answers",
+      "neupai.p":"A discovery-optimization solution that, through SEO-based content building, surfaces you at once across search engines (SEO), AI answers (AEO) and generative engines (GEO) — for any industry.",
+      "cases.eyebrow":"Case Studies",
+      "case.brown.c":"Law · Firm","case.brown.h":"Brown Law Firm",
+      "case.brown.d":"Restructured a military-criminal-law firm's expertise (EEAT) into content that search and AI trust.",
+      "case.tech42.c":"Tech media","case.tech42.h":"Tech42",
+      "case.tech42.d":"Connected an AI tech-journalism outlet's articles to top search rankings and generative-engine citations.",
+      "case.daily.c":"General news","case.daily.h":"Daily365",
+      "case.daily.d":"Structural optimization to lift a general news outlet's search visibility and AI-answer citation.",
+      "case.hurease.c":"Beauty · Commerce","case.hurease.h":"HUREASE",
+      "case.hurease.d":"Optimized a body-care brand's product content for search, shopping and AI recommendations.",
+      "neupai.note":"* Each case is an example project applying NeuPAI's SEO·AEO·GEO methodology.",
+      "b2c.h2":"Consumer brands people<br>love in everyday life",
+      "b2c.p":"Starting from what people search for and prefer, we build and grow consumer services that fit into real daily life.",
+      "card.hansool.h":"Hansool",
+      "card.hansool.dom":"In preparation · Multilingual",
+      "card.hansool.d":"Ask about taste, ABV, occasion and mood, and get Korean traditional liquor matched to your palate — a curation linking breweries, places to drink and tasting events. Supports 12 languages and global SEO.",
+      "card.hansool.k":"Liquor curation · Global",
+      "card.ktm.d":"A travel platform to discover and book Korea trips and Seoul events & experiences via AI search. Personalized recommendations matched to search context carry travelers to their next moment.",
+      "card.ktm.k":"Travel · Booking",
+      "appr.h2":"How INAYOU works","appr.p":"We start from data, design discovery, and operate the services ourselves.",
+      "appr.h1":"Start from search data","appr.p1":"We analyze search and intent data to define market gaps and opportunities from what people actually look for.",
+      "appr.h2b":"Design discovery","appr.p2":"With content and structure spanning SEO·AEO·GEO, we make brands the pick in both search engines and AI answers.",
+      "appr.h3":"Operate it ourselves","appr.p3":"Beyond agency work, we run B2B and B2C services as our own products and feed the data back into them.",
+      "contact.h2":"Let's talk about what<br>we can build together",
+      "contact.p":"Partnership, investment, adoption — every inquiry is welcome. Join the growth INAYOU builds with search and AI.",
+      "contact.btn":"Send us an email &rarr;",
+      "ft.desc":"A venture studio planning and operating B2B and B2C services with search data and AI.",
+      "ft.about":"About","ft.approach":"Approach","ft.contact":"Contact",
+      "ft.copy":"© 2026 INAYOU Inc. <span class=\"mock-note\">· Demo mockup — descriptions and figures are examples.</span>",
+      "ft.theme":"◐ Theme"
+    }
+  };
+
+  (function(){
+    var nodes = document.querySelectorAll('[data-i18n]');
+    // snapshot Korean originals
+    var KO = {};
+    nodes.forEach(function(n){ KO[n.getAttribute('data-i18n')] = n.innerHTML; });
+    I18N.ko = KO;
+
+    var lang = 'ko';
+    var langBtn = document.getElementById('langBtn');
+    function apply(l){
+      lang = l;
+      var dict = I18N[l] || KO;
+      nodes.forEach(function(n){
+        var k = n.getAttribute('data-i18n');
+        if(dict[k] !== undefined) n.innerHTML = dict[k];
+      });
+      document.documentElement.setAttribute('lang', l);
+      langBtn.textContent = (l === 'ko') ? 'EN' : '한국어';
+    }
+    langBtn.addEventListener('click', function(){ apply(lang === 'ko' ? 'en' : 'ko'); });
+  })();
+
+  // ---------- Theme toggle ----------
+  (function(){
+    var btn=document.getElementById('themeBtn');
+    var root=document.documentElement;
+    btn.addEventListener('click',function(){
+      var cur=root.getAttribute('data-theme');
+      if(!cur){ cur = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark':'light'; }
+      root.setAttribute('data-theme', cur==='dark'?'light':'dark');
+    });
+  })();
+
+  // ---------- Ambient search-signal canvas ----------
+  (function(){
+    var c=document.getElementById('signal');
+    if(!c) return;
+    var ctx=c.getContext('2d');
+    var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var W,H,DPR;
+    function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+    function resize(){
+      DPR=Math.min(window.devicePixelRatio||1,2);
+      W=c.clientWidth; H=c.clientHeight;
+      c.width=W*DPR; c.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+    }
+    resize(); window.addEventListener('resize',resize);
+
+    var dots=[];
+    for(var i=0;i<26;i++){
+      dots.push({x:Math.random(),y:Math.random(),r:1+Math.random()*2.4,s:.2+Math.random()*.6,ph:Math.random()*6.28});
+    }
+    function hex(v){var s=css(v)||'#1C6E68';return s;}
+    function draw(t){
+      ctx.clearRect(0,0,W,H);
+      var b2b=hex('--b2b'), b2c=hex('--b2c');
+      var waves=[{c:b2b,a:.16,amp:26,f:.008,sp:.00022,y:.62},
+                 {c:b2c,a:.13,amp:34,f:.006,sp:.00017,y:.72},
+                 {c:b2b,a:.09,amp:18,f:.011,sp:.00030,y:.52}];
+      for(var w=0;w<waves.length;w++){
+        var wv=waves[w];
+        ctx.beginPath();
+        for(var x=0;x<=W;x+=6){
+          var y=H*wv.y + Math.sin(x*wv.f + t*wv.sp*1000 + w)*wv.amp
+                       + Math.sin(x*wv.f*.5 + t*wv.sp*600)*wv.amp*.4;
+          if(x===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        }
+        ctx.strokeStyle=wv.c; ctx.globalAlpha=wv.a; ctx.lineWidth=1.6; ctx.stroke();
+      }
+      ctx.globalAlpha=1;
+      for(var d=0; d<dots.length; d++){
+        var p=dots[d];
+        var px=(p.x*W + Math.sin(t*.0002*p.s + p.ph)*30);
+        var py=(p.y*H*.9 + Math.cos(t*.00016*p.s + p.ph)*22);
+        ctx.beginPath();
+        ctx.arc(px,py,p.r,0,6.2832);
+        ctx.fillStyle = d%3===0 ? b2c : b2b;
+        ctx.globalAlpha=.28;
+        ctx.fill();
+      }
+      ctx.globalAlpha=1;
+    }
+    if(reduce){ draw(0); }
+    else{ (function loop(t){ draw(t); requestAnimationFrame(loop); })(0); }
+  })();
+</script>
+</body>
+</html>
