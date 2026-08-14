@@ -198,6 +198,8 @@
   .pv-bar{height:5px; border-radius:3px; background:var(--line); overflow:hidden}
   .pv-bar > i{display:block; height:100%; border-radius:3px}
   .pv-btn{font-size:.58rem; font-weight:700; color:#fff; padding:7px 0; border-radius:7px; text-align:center}
+  .card-preview img.shot{display:block; width:100%; height:158px; object-fit:cover; object-position:top center}
+  .case-shot{display:block; width:100%; height:104px; object-fit:cover; object-position:top center; border-radius:10px; border:1px solid var(--line)}
 
   /* ---------- NEUPAI / CASES ---------- */
   .neupai{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
@@ -339,21 +341,9 @@
 
     <div class="cards">
       <a class="card t-b2b" href="https://dom-in-us.com" target="_blank" rel="noopener">
-        <!-- PREVIEW: Dominus — replace .bscreen with real screenshot <img> -->
         <div class="card-preview">
-          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">dom-in-us.com/dashboard</span></div>
-          <div class="bscreen">
-            <div class="pv-between"><span class="pv-t">브랜드 평판 모니터링</span><span class="pv-pill" style="background:var(--b2b-soft);color:var(--b2b-ink)">&#9650; 안정</span></div>
-            <svg viewBox="0 0 200 44" preserveAspectRatio="none" style="width:100%;height:44px;margin-top:9px" aria-hidden="true">
-              <polygon fill="var(--b2b-soft)" points="0,32 22,26 44,28 66,18 88,22 110,12 132,16 154,9 176,13 200,5 200,44 0,44"/>
-              <polyline fill="none" stroke="var(--b2b)" stroke-width="2" points="0,32 22,26 44,28 66,18 88,22 110,12 132,16 154,9 176,13 200,5"/>
-            </svg>
-            <div class="pv-row" style="margin-top:10px;gap:7px">
-              <div class="pv-card" style="flex:1"><div class="pv-sub">긍정</div><div class="pv-t" style="color:var(--b2b)">72%</div></div>
-              <div class="pv-card" style="flex:1"><div class="pv-sub">부정</div><div class="pv-t" style="color:var(--b2c)">8%</div></div>
-              <div class="pv-card" style="flex:1"><div class="pv-sub">신규 이슈</div><div class="pv-t">3</div></div>
-            </div>
-          </div>
+          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">dom-in-us.com</span></div>
+          <img class="shot" src="images/dominus.jpg" alt="Dominus 브랜드 평판 관리 대시보드 화면" loading="lazy">
         </div>
         <span class="idx">B2B / 01</span>
         <h3 data-i18n="card.dominus.h">Dominus <span style="font-weight:600;color:var(--slate);font-size:.9rem">dom-in-us</span></h3>
@@ -363,26 +353,9 @@
       </a>
 
       <a class="card t-b2b" href="https://presfi.io" target="_blank" rel="noopener">
-        <!-- PREVIEW: Presfi — replace .bscreen with real screenshot <img> -->
         <div class="card-preview">
-          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">presfi.io/media-index</span></div>
-          <div class="bscreen">
-            <div class="pv-between"><span class="pv-t">미디어 파워 인덱스</span><span class="pv-sub">150+ 매체</span></div>
-            <div style="margin-top:10px;display:flex;flex-direction:column;gap:11px">
-              <div>
-                <div class="pv-between"><span class="pv-sub" style="color:var(--ink);font-weight:600">매일○○경제</span><span class="pv-pill" style="background:var(--b2b-soft);color:var(--b2b-ink)">S+</span></div>
-                <div class="pv-bar" style="margin-top:5px"><i style="width:94%;background:var(--b2b)"></i></div>
-              </div>
-              <div>
-                <div class="pv-between"><span class="pv-sub" style="color:var(--ink);font-weight:600">○○일보</span><span class="pv-pill" style="background:var(--b2b-soft);color:var(--b2b-ink)">A</span></div>
-                <div class="pv-bar" style="margin-top:5px"><i style="width:74%;background:var(--b2b);opacity:.7"></i></div>
-              </div>
-              <div>
-                <div class="pv-between"><span class="pv-sub" style="color:var(--ink);font-weight:600">○○뉴스</span><span class="pv-pill" style="border:1px solid var(--line-strong);color:var(--slate)">B</span></div>
-                <div class="pv-bar" style="margin-top:5px"><i style="width:58%;background:var(--slate-2)"></i></div>
-              </div>
-            </div>
-          </div>
+          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">presfi.io</span></div>
+          <img class="shot" src="images/presfi.jpg" alt="Presfi 미디어 파워 인덱스 랜딩 화면" loading="lazy">
         </div>
         <span class="idx">B2B / 02</span>
         <h3>Presfi</h3>
@@ -429,18 +402,18 @@
     <div class="cases-eyebrow" data-i18n="cases.eyebrow">적용 사례 &middot; Case Studies</div>
     <div class="cases-grid">
       <a class="case-card" href="https://brownlawfirm.imweb.me/" target="_blank" rel="noopener">
-        <div class="case-mono">브</div>
+        <img class="case-shot" src="images/brown.jpg" alt="법률사무소 브라운 홈페이지" loading="lazy">
         <div class="cat" data-i18n="case.brown.c">법률 &middot; 로펌</div>
         <h4 data-i18n="case.brown.h">법률사무소 브라운</h4>
         <div class="cdomain">brownlawfirm.imweb.me</div>
         <p data-i18n="case.brown.d">군형사 특화 로펌의 전문성(EEAT)을 검색과 AI가 신뢰하는 콘텐츠 구조로 재설계.</p>
       </a>
 
-      <a class="case-card" href="https://tech42.com" target="_blank" rel="noopener">
-        <div class="case-mono">테</div>
+      <a class="case-card" href="https://tech42.co.kr" target="_blank" rel="noopener">
+        <img class="case-shot" src="images/tech42.jpg" alt="테크42 홈페이지" loading="lazy">
         <div class="cat" data-i18n="case.tech42.c">테크 미디어</div>
         <h4 data-i18n="case.tech42.h">테크42</h4>
-        <div class="cdomain">tech42.com</div>
+        <div class="cdomain">tech42.co.kr</div>
         <p data-i18n="case.tech42.d">AI 테크 저널리즘 매체의 기사를 검색 상위 노출과 생성엔진 인용으로 연결.</p>
       </a>
 
@@ -453,7 +426,7 @@
       </a>
 
       <a class="case-card" href="https://hurease.com/" target="_blank" rel="noopener">
-        <div class="case-mono">휴</div>
+        <img class="case-shot" src="images/hurease.jpg" alt="휴리즈 HUREASE 홈페이지" loading="lazy">
         <div class="cat" data-i18n="case.hurease.c">뷰티 &middot; 커머스</div>
         <h4 data-i18n="case.hurease.h">휴리즈 HUREASE</h4>
         <div class="cdomain">hurease.com</div>
@@ -499,21 +472,9 @@
       </a>
 
       <a class="card t-b2c" href="https://ktravelmate.com" target="_blank" rel="noopener">
-        <!-- PREVIEW: K-TravelMate — replace .bscreen with real screenshot <img> -->
         <div class="card-preview">
           <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">ktravelmate.com</span></div>
-          <div class="bscreen">
-            <div class="pv-card pv-row" style="gap:8px"><span class="pv-sub" style="flex:1;color:var(--ink);font-weight:600">서울 &middot; 8월 &middot; 2명</span><span class="pv-pill" style="background:var(--b2c);color:#fff">검색</span></div>
-            <div class="pv-card" style="margin-top:10px;display:flex;gap:10px;align-items:center">
-              <div style="width:46px;height:46px;border-radius:8px;flex:none;background:linear-gradient(135deg,var(--b2b),var(--b2c))"></div>
-              <div style="flex:1;min-width:0">
-                <div class="pv-t" style="font-size:.66rem">N서울타워 나이트워크</div>
-                <div class="pv-sub" style="margin-top:1px">서울 &middot; 야간 체험 &middot; ★ 4.9</div>
-                <div class="pv-t" style="color:var(--b2c);margin-top:3px">₩25,000</div>
-              </div>
-            </div>
-            <div class="pv-sub" style="margin-top:9px;text-align:center">AI 검색 유입에 맞춘 개인화 추천</div>
-          </div>
+          <img class="shot" src="images/ktravelmate.jpg" alt="K-TravelMate 한국 여행 플랫폼 화면" loading="lazy">
         </div>
         <span class="idx">B2C / 02</span>
         <h3>K-TravelMate</h3>
@@ -765,5 +726,6 @@
     else{ (function loop(t){ draw(t); requestAnimationFrame(loop); })(0); }
   })();
 </script>
+
 </body>
 </html>
