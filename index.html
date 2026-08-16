@@ -58,6 +58,7 @@
     font-family:var(--sans); background:var(--paper); color:var(--ink);
     line-height:1.62; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
     letter-spacing:-.01em;
+    word-break:keep-all; overflow-wrap:break-word;
   }
   .wrap{max-width:var(--max); margin:0 auto; padding:0 28px}
   a{color:inherit; text-decoration:none}
@@ -223,6 +224,8 @@
   .case-card .cdomain{font-size:.8rem; color:var(--slate); word-break:break-all}
   .case-card p{font-size:.86rem; color:var(--ink-soft); line-height:1.55; margin-top:2px}
   .neupai-note{margin-top:28px; font-size:.82rem; color:var(--slate-2)}
+  .neupai-cta{display:inline-flex; align-items:center; gap:8px; background:var(--b2b); color:var(--paper); font-weight:600; font-size:.95rem; padding:13px 26px; border-radius:12px; transition:transform .16s, opacity .16s; white-space:nowrap}
+  .neupai-cta:hover{transform:translateY(-2px); opacity:.94}
 
   /* ---------- APPROACH ---------- */
   .approach{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
@@ -281,7 +284,7 @@
       <span class="mark">INAYOU</span><span class="ko">(주)이나유</span>
     </a>
     <nav class="links">
-      <a href="#about" data-i18n="nav.about">회사소개</a>
+      <a href="#top" data-i18n="nav.about">회사소개</a>
       <a href="#b2b" data-i18n="nav.b2b">B2B 사업</a>
       <a href="#neupai">NeuPAI</a>
       <a href="#b2c" data-i18n="nav.b2c">B2C 사업</a>
@@ -308,28 +311,7 @@
   </div>
 </section>
 
-<section class="overview" id="about" aria-label="회사 개요">
-  <div class="wrap ov-grid">
-    <div class="ov-item">
-      <div class="n" data-i18n="ov.n1">2<span>부문</span></div>
-      <div class="l" data-i18n="ov.l1">B2B와 B2C, 두 축으로<br>서비스를 설계·운영합니다</div>
-    </div>
-    <div class="ov-item">
-      <div class="n" data-i18n="ov.n2">6<span>개</span></div>
-      <div class="l" data-i18n="ov.l2">현재 운영 및 준비 중인<br>자체 서비스 라인업</div>
-    </div>
-    <div class="ov-item">
-      <div class="n">SEO<span>·AEO·GEO</span></div>
-      <div class="l" data-i18n="ov.l3">검색·AI 답변·생성엔진까지<br>아우르는 발견 최적화 역량</div>
-    </div>
-    <div class="ov-item">
-      <div class="n">100<span>%</span></div>
-      <div class="l" data-i18n="ov.l4">외주가 아닌 자체 기획·<br>개발·운영 기반 프로덕트</div>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="b2b">
+<section class="block" id="b2b" style="padding-top:40px">
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -364,24 +346,14 @@
         <div class="foot"><span class="kind" data-i18n="card.presfi.k">PR &middot; 미디어 인텔리전스</span><span class="go" data-i18n="go.visit">서비스 보기 &rarr;</span></div>
       </a>
 
-      <a class="card t-b2b" href="https://unimate.com" target="_blank" rel="noopener">
-        <!-- PREVIEW: Unimate — replace .bscreen with real screenshot <img> -->
+      <a class="card t-b2b" href="https://unimates.io/" target="_blank" rel="noopener">
         <div class="card-preview">
-          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">unimate.com/admissions</span></div>
-          <div class="bscreen">
-            <div class="pv-t">입시 상담 AI</div>
-            <div class="pv-row" style="margin-top:8px"><span class="pv-card" style="font-size:.56rem;color:var(--slate);border-radius:8px 8px 8px 3px">수시 지원 가능할까요?</span></div>
-            <div class="pv-row" style="justify-content:flex-end;margin-top:6px"><span class="pv-card" style="font-size:.56rem;background:var(--b2b-soft);color:var(--b2b-ink);border-color:transparent;border-radius:8px 8px 3px 8px">내신 기준 합격권이에요 &#10003;</span></div>
-            <div class="pv-card" style="margin-top:10px">
-              <div class="pv-between"><span class="pv-sub">합격 예측</span><span class="pv-t" style="color:var(--b2b)">78%</span></div>
-              <div class="pv-bar" style="margin-top:6px"><i style="width:78%;background:var(--b2b)"></i></div>
-            </div>
-            <div class="pv-btn" style="background:var(--b2c);margin-top:10px">상담 신청</div>
-          </div>
+          <div class="bchrome"><span class="bdot"></span><span class="bdot"></span><span class="bdot"></span><span class="burl">unimates.io</span></div>
+          <img class="shot" src="images/unimate.jpg" alt="Unimate 대학 입시 상담 서비스 화면" loading="lazy">
         </div>
         <span class="idx">B2B / 03</span>
         <h3>Unimate</h3>
-        <span class="domain">unimate.com</span>
+        <span class="domain">unimates.io</span>
         <p class="desc" data-i18n="card.unimate.d">대학 입학처를 위한 입시 전환 SaaS. AI 챗봇 상담, 성적 기반 합격 예측, 리드 CRM으로 흩어진 문의를 상담·등록까지 잇습니다.</p>
         <div class="foot"><span class="kind" data-i18n="card.unimate.k">입시 마케팅 SaaS</span><span class="go" data-i18n="go.visit">서비스 보기 &rarr;</span></div>
       </a>
@@ -417,12 +389,12 @@
         <p data-i18n="case.tech42.d">AI 테크 저널리즘 매체의 기사를 검색 상위 노출과 생성엔진 인용으로 연결.</p>
       </a>
 
-      <a class="case-card" href="https://daily365.com" target="_blank" rel="noopener">
-        <div class="case-mono">데</div>
-        <div class="cat" data-i18n="case.daily.c">종합 뉴스</div>
-        <h4 data-i18n="case.daily.h">데일리365</h4>
-        <div class="cdomain">daily365.com</div>
-        <p data-i18n="case.daily.d">종합 뉴스 콘텐츠의 검색 노출과 AI 답변 인용 가능성을 높이는 구조 최적화.</p>
+      <a class="case-card" href="https://www.moneystorm.kr/" target="_blank" rel="noopener">
+        <img class="case-shot" src="images/moneystorm.jpg" alt="머니스톰 뉴스 홈페이지" loading="lazy">
+        <div class="cat" data-i18n="case.daily.c">경제 &middot; 뉴스</div>
+        <h4 data-i18n="case.daily.h">머니스톰</h4>
+        <div class="cdomain">moneystorm.kr</div>
+        <p data-i18n="case.daily.d">경제&middot;종합 뉴스 콘텐츠의 검색 노출과 AI 답변 인용 가능성을 높이는 구조 최적화.</p>
       </a>
 
       <a class="case-card" href="https://hurease.com/" target="_blank" rel="noopener">
@@ -433,7 +405,10 @@
         <p data-i18n="case.hurease.d">바디케어 브랜드의 제품 콘텐츠를 검색&middot;쇼핑&middot;AI 추천 노출에 맞게 최적화.</p>
       </a>
     </div>
-    <p class="neupai-note" data-i18n="neupai.note">* 각 사례는 NeuPAI의 SEO&middot;AEO&middot;GEO 방법론을 적용한 프로젝트 예시입니다.</p>
+    <div style="margin-top:24px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px">
+      <p class="neupai-note" style="margin-top:0" data-i18n="neupai.note">* 각 사례는 NeuPAI의 SEO&middot;AEO&middot;GEO 방법론을 적용한 프로젝트 예시입니다.</p>
+      <a class="neupai-cta" href="#contact" data-i18n="neupai.cta">컨설팅 문의 &rarr;</a>
+    </div>
   </div>
 </section>
 
@@ -560,7 +535,7 @@
           <h5>B2B</h5>
           <a href="https://dom-in-us.com" target="_blank" rel="noopener">Dominus · dom-in-us</a>
           <a href="https://presfi.io" target="_blank" rel="noopener">Presfi</a>
-          <a href="https://unimate.com" target="_blank" rel="noopener">Unimate</a>
+          <a href="https://unimates.io/" target="_blank" rel="noopener">Unimate</a>
           <a href="#neupai">NeuPAI (SEO·AEO·GEO)</a>
         </div>
         <div class="ft-col">
@@ -570,7 +545,7 @@
         </div>
         <div class="ft-col">
           <h5>Company</h5>
-          <a href="#about" data-i18n="ft.about">회사소개</a>
+          <a href="#top" data-i18n="ft.about">회사소개</a>
           <a href="#approach" data-i18n="ft.approach">접근 방식</a>
           <a href="#contact" data-i18n="ft.contact">문의</a>
         </div>
@@ -613,11 +588,12 @@
       "case.brown.d":"Restructured a military-criminal-law firm's expertise (EEAT) into content that search and AI trust.",
       "case.tech42.c":"Tech media","case.tech42.h":"Tech42",
       "case.tech42.d":"Connected an AI tech-journalism outlet's articles to top search rankings and generative-engine citations.",
-      "case.daily.c":"General news","case.daily.h":"Daily365",
-      "case.daily.d":"Structural optimization to lift a general news outlet's search visibility and AI-answer citation.",
+      "case.daily.c":"Economy · News","case.daily.h":"MoneyStorm",
+      "case.daily.d":"Structural optimization to lift an economy & news outlet's search visibility and AI-answer citation.",
       "case.hurease.c":"Beauty · Commerce","case.hurease.h":"HUREASE",
       "case.hurease.d":"Optimized a body-care brand's product content for search, shopping and AI recommendations.",
       "neupai.note":"* Each case is an example project applying NeuPAI's SEO·AEO·GEO methodology.",
+      "neupai.cta":"Consulting inquiry &rarr;",
       "b2c.h2":"Consumer brands people<br>love in everyday life",
       "b2c.p":"Starting from what people search for and prefer, we build and grow consumer services that fit into real daily life.",
       "card.hansool.h":"Hansool",
