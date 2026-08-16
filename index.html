@@ -226,6 +226,18 @@
   .neupai-note{margin-top:28px; font-size:.82rem; color:var(--slate-2)}
   .neupai-cta{display:inline-flex; align-items:center; gap:8px; background:var(--b2b); color:var(--paper); font-weight:600; font-size:.95rem; padding:13px 26px; border-radius:12px; transition:transform .16s, opacity .16s; white-space:nowrap}
   .neupai-cta:hover{transform:translateY(-2px); opacity:.94}
+  .np-results{margin-top:34px}
+  .np-results-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:760px){ .np-results-grid{grid-template-columns:1fr} }
+  .np-result{background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:20px 22px}
+  .npr-head{display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:14px}
+  .npr-name{font-size:1.05rem; font-weight:800; letter-spacing:-.02em}
+  .npr-src{font-size:.68rem; font-weight:700; letter-spacing:.06em; color:var(--slate-2); text-transform:uppercase}
+  .npr-metrics{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+  .npr-m{background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:11px 10px; text-align:center}
+  .npr-m b{display:block; font-size:1.15rem; font-weight:800; color:var(--b2b); letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1.1}
+  .npr-m span{display:block; margin-top:5px; font-size:.67rem; color:var(--slate); line-height:1.35}
+  .npr-note{margin-top:13px; font-size:.82rem; color:var(--ink-soft); line-height:1.55}
 
   /* ---------- APPROACH ---------- */
   .approach{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
@@ -405,6 +417,30 @@
         <p data-i18n="case.hurease.d">바디케어 브랜드의 제품 콘텐츠를 검색&middot;쇼핑&middot;AI 추천 노출에 맞게 최적화.</p>
       </a>
     </div>
+    <div class="np-results">
+      <div class="cases-eyebrow" data-i18n="np.perf">성과 요약 &middot; Performance</div>
+      <div class="np-results-grid">
+        <div class="np-result">
+          <div class="npr-head"><span class="npr-name">K-TravelMate</span><span class="npr-src" data-i18n="np.ktm.src">GA4 &middot; 검색·AI 유입</span></div>
+          <div class="npr-metrics">
+            <div class="npr-m"><b>96.7%</b><span data-i18n="np.ktm.m1">오가닉 검색 유입</span></div>
+            <div class="npr-m"><b>2,341</b><span data-i18n="np.ktm.m2">일 최대 세션</span></div>
+            <div class="npr-m"><b>ChatGPT</b><span data-i18n="np.ktm.m3">AI Assistant 유입 확보</span></div>
+          </div>
+          <p class="npr-note" data-i18n="np.ktm.note">네이버 모바일 검색이 최다 유입원이고, 생성엔진(ChatGPT)에서도 실제 방문이 발생 &mdash; SEO와 GEO가 함께 작동합니다.</p>
+        </div>
+        <div class="np-result">
+          <div class="npr-head"><span class="npr-name" data-i18n="np.brown.name">법률사무소 브라운</span><span class="npr-src" data-i18n="np.brown.src">GA4 &middot; SEO/GEO 리포트</span></div>
+          <div class="npr-metrics">
+            <div class="npr-m"><b>77.1%</b><span data-i18n="np.brown.m1">오가닉 검색 유입</span></div>
+            <div class="npr-m"><b>34% &middot; 22%</b><span data-i18n="np.brown.m2">구글 · 네이버 오가닉</span></div>
+            <div class="npr-m"><b data-i18n="np.brown.m3v">법률 칼럼</b><span data-i18n="np.brown.m3">콘텐츠가 상위 랜딩</span></div>
+          </div>
+          <p class="npr-note" data-i18n="np.brown.note">군형사 특화 법률 칼럼 콘텐츠가 검색 유입을 견인 &mdash; 홈 외에 칼럼 페이지들이 주요 진입점으로 성장했습니다.</p>
+        </div>
+      </div>
+    </div>
+
     <div style="margin-top:24px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px">
       <p class="neupai-note" style="margin-top:0" data-i18n="neupai.note">* 각 사례는 NeuPAI의 SEO&middot;AEO&middot;GEO 방법론을 적용한 프로젝트 예시입니다.</p>
       <a class="neupai-cta" href="#contact" data-i18n="neupai.cta">컨설팅 문의 &rarr;</a>
@@ -594,6 +630,19 @@
       "case.hurease.d":"Optimized a body-care brand's product content for search, shopping and AI recommendations.",
       "neupai.note":"* Each case is an example project applying NeuPAI's SEO·AEO·GEO methodology.",
       "neupai.cta":"Consulting inquiry &rarr;",
+      "np.perf":"Performance",
+      "np.ktm.src":"GA4 · Search & AI traffic",
+      "np.ktm.m1":"Organic search traffic",
+      "np.ktm.m2":"Peak daily sessions",
+      "np.ktm.m3":"AI-assistant traffic won",
+      "np.ktm.note":"Naver mobile search is the top source, and real visits arrive from a generative engine (ChatGPT) too — SEO and GEO working together.",
+      "np.brown.name":"Brown Law Firm",
+      "np.brown.src":"GA4 · SEO/GEO report",
+      "np.brown.m1":"Organic search traffic",
+      "np.brown.m2":"Google · Naver organic",
+      "np.brown.m3v":"Legal columns",
+      "np.brown.m3":"as top landing content",
+      "np.brown.note":"Military-criminal-law column content drives search traffic — beyond the homepage, column pages grew into key entry points.",
       "b2c.h2":"Consumer brands people<br>love in everyday life",
       "b2c.p":"Starting from what people search for and prefer, we build and grow consumer services that fit into real daily life.",
       "card.hansool.h":"Hansool",
