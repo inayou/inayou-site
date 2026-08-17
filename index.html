@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>(주)이나유 INAYOU — 검색·AI 기반 B2B·B2C 벤처 스튜디오</title>
-<meta name="description" content="(주)이나유는 검색 데이터와 생성형 AI로 B2B·B2C 서비스를 직접 기획·운영하는 벤처 스튜디오입니다. Dominus·Presfi·Unimate·NeuPAI·한술·K-TravelMate.">
+<title>(주)이나유 INAYOU — AI·데이터로 발견과 연결을 설계하는 벤처 스튜디오</title>
+<meta name="description" content="(주)이나유는 AI와 데이터로 브랜드의 발견·평판·전환과 사람의 취향 기반 추천을 설계·운영하는 벤처 스튜디오입니다. Dominus·Presfi·Unimate·NeuPAI·한술·K-TravelMate.">
 <meta property="og:title" content="(주)이나유 INAYOU">
-<meta property="og:description" content="검색과 AI가 만나는 지점에서, 브랜드를 발견되게 합니다.">
+<meta property="og:description" content="AI와 데이터로, 브랜드는 발견되게 사람은 연결되게.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#1C6E68">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3Crect%20x='3.2'%20y='3.2'%20width='33.6'%20height='33.6'%20rx='10'%20fill='none'%20stroke='%231C6E68'%20stroke-width='2.6'/%3E%3Cpolygon%20points='20,7.5%2024.6,20%2015.4,20'%20fill='%231C6E68'/%3E%3Cpolygon%20points='20,32.5%2024.6,20%2015.4,20'%20fill='%23E05B33'/%3E%3Ccircle%20cx='20'%20cy='20'%20r='2.6'%20fill='%23161B22'/%3E%3C/svg%3E">
@@ -96,6 +96,7 @@
     font-size:.86rem; font-weight:600; color:var(--ink); white-space:nowrap;
     border:1px solid var(--line-strong); padding:8px 16px; border-radius:999px;
     transition:border-color .18s, background .18s, color .18s;
+    background:none; cursor:pointer; font-family:inherit;
   }
   .nav-cta:hover{border-color:var(--ink); background:var(--ink); color:var(--paper)}
   @media (max-width:900px){ nav.links{display:none} }
@@ -224,7 +225,7 @@
   .case-card .cdomain{font-size:.8rem; color:var(--slate); word-break:break-all}
   .case-card p{font-size:.86rem; color:var(--ink-soft); line-height:1.55; margin-top:2px}
   .neupai-note{margin-top:28px; font-size:.82rem; color:var(--slate-2)}
-  .neupai-cta{display:inline-flex; align-items:center; gap:8px; background:var(--b2b); color:var(--paper); font-weight:600; font-size:.95rem; padding:13px 26px; border-radius:12px; transition:transform .16s, opacity .16s; white-space:nowrap}
+  .neupai-cta{display:inline-flex; align-items:center; gap:8px; background:var(--b2b); color:var(--paper); font-weight:600; font-size:.95rem; padding:13px 26px; border-radius:12px; transition:transform .16s, opacity .16s; white-space:nowrap; border:none; cursor:pointer; font-family:inherit}
   .neupai-cta:hover{transform:translateY(-2px); opacity:.94}
   .np-results{margin-top:34px}
   .np-results-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
@@ -282,6 +283,42 @@
   .theme-toggle:hover{color:var(--ink);border-color:var(--ink)}
   .mock-note{font-size:.72rem;color:var(--slate-2)}
   :focus-visible{outline:2px solid var(--b2b); outline-offset:3px; border-radius:4px}
+
+  /* ---------- INQUIRY MODAL ---------- */
+  .modal-overlay{position:fixed; inset:0; z-index:100; background:rgba(22,27,34,.55); backdrop-filter:blur(3px); display:flex; align-items:flex-start; justify-content:center; padding:40px 18px; overflow-y:auto; opacity:0; visibility:hidden; transition:opacity .2s, visibility .2s}
+  .modal-overlay.open{opacity:1; visibility:visible}
+  .modal{background:var(--surface); border:1px solid var(--line); border-radius:22px; width:100%; max-width:560px; box-shadow:var(--shadow-lift); transform:translateY(14px); transition:transform .22s; margin:auto}
+  .modal-overlay.open .modal{transform:none}
+  .modal-head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding:26px 28px 18px; border-bottom:1px solid var(--line)}
+  .modal-head h3{font-size:1.3rem; font-weight:800; letter-spacing:-.02em}
+  .modal-head p{font-size:.86rem; color:var(--slate); margin-top:6px; line-height:1.5}
+  .modal-close{width:34px; height:34px; border-radius:9px; border:1px solid var(--line); background:var(--surface); color:var(--slate); font-size:1.3rem; cursor:pointer; flex:none; line-height:1; display:flex; align-items:center; justify-content:center; font-family:inherit}
+  .modal-close:hover{color:var(--ink); border-color:var(--ink)}
+  .modal-body{padding:22px 28px 6px}
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:15px}
+  .fg{display:flex; flex-direction:column; gap:6px}
+  .fg.full{grid-column:1 / -1}
+  .fg label{font-size:.8rem; font-weight:600; color:var(--ink)}
+  .fg label .req{color:var(--b2c); margin-left:2px}
+  .fg input, .fg select, .fg textarea{font-family:inherit; font-size:.92rem; color:var(--ink); background:var(--paper); border:1px solid var(--line-strong); border-radius:10px; padding:11px 13px; width:100%; transition:border-color .16s}
+  .fg input:focus, .fg select:focus, .fg textarea:focus{outline:none; border-color:var(--b2b)}
+  .fg textarea{resize:vertical; min-height:96px}
+  .fg .hint{font-size:.72rem; color:var(--slate-2)}
+  .fg input[type=file]{padding:9px 12px; font-size:.82rem; color:var(--slate)}
+  .form-err{color:var(--b2c); font-size:.75rem; display:none}
+  .fg.invalid input, .fg.invalid select, .fg.invalid textarea{border-color:var(--b2c)}
+  .fg.invalid .form-err{display:block}
+  .modal-foot{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 28px 24px; flex-wrap:wrap}
+  .modal-foot .note{font-size:.72rem; color:var(--slate-2); flex:1; min-width:160px}
+  .modal-submit{background:var(--ink); color:var(--paper); border:none; font-family:inherit; font-weight:600; font-size:.95rem; padding:13px 26px; border-radius:12px; cursor:pointer; transition:transform .16s, opacity .16s}
+  .modal-submit:hover{transform:translateY(-1px)}
+  .modal-submit:disabled{opacity:.55; cursor:default; transform:none}
+  .form-success{padding:44px 28px; text-align:center; display:none}
+  .form-success.show{display:block}
+  .form-success .ok{width:56px; height:56px; border-radius:50%; background:var(--b2b-soft); color:var(--b2b-ink); display:flex; align-items:center; justify-content:center; font-size:1.7rem; margin:0 auto 16px}
+  .form-success h3{font-size:1.2rem; font-weight:800}
+  .form-success p{color:var(--slate); margin-top:8px; font-size:.9rem; line-height:1.55}
+  @media (max-width:560px){ .form-grid{grid-template-columns:1fr} .modal-head,.modal-body,.modal-foot{padding-left:20px; padding-right:20px} }
 </style>
 
 <header class="nav">
@@ -304,7 +341,7 @@
     </nav>
     <div class="nav-right">
       <button class="lang-btn" id="langBtn" type="button">EN</button>
-      <a class="nav-cta" href="#contact" data-i18n="nav.cta">사업 문의</a>
+      <button class="nav-cta" type="button" data-i18n="nav.cta" onclick="openInquiry()">문의하기</button>
     </div>
   </div>
 </header>
@@ -313,12 +350,12 @@
 <section class="hero">
   <canvas id="signal" aria-hidden="true"></canvas>
   <div class="wrap hero-in">
-    <span class="eyebrow">Search &times; AI Growth Studio</span>
-    <h1 data-i18n="hero.h1">검색과 AI가 만나는 지점에서, <span class="g">브랜드를 발견되게</span> 합니다</h1>
-    <p class="lead" data-i18n="hero.lead">(주)이나유는 검색 데이터와 생성형 AI를 기반으로 B2B·B2C 서비스를 직접 기획하고 운영하는 벤처 스튜디오입니다. 우리는 사람들이 찾는 순간, 브랜드가 답이 되도록 만듭니다.</p>
+    <span class="eyebrow">AI &middot; Data Venture Studio</span>
+    <h1 data-i18n="hero.h1">AI와 데이터로, 브랜드는 <span class="g">발견되게</span> 사람은 <span class="g">연결되게</span></h1>
+    <p class="lead" data-i18n="hero.lead">(주)이나유는 AI와 데이터로 B2B·B2C 서비스를 직접 기획하고 운영하는 벤처 스튜디오입니다. 브랜드가 검색·미디어·AI 답변에서 발견되고 신뢰받게 하고, 사람들은 자신의 취향과 상황에 꼭 맞는 선택으로 연결합니다.</p>
     <div class="hero-chips">
-      <span class="chip b2b"><span class="sw"></span><span data-i18n="hero.chipB2b">B2B <small>· 기업의 발견 최적화</small></span></span>
-      <span class="chip b2c"><span class="sw"></span><span data-i18n="hero.chipB2c">B2C <small>· 일상을 위한 자체 브랜드</small></span></span>
+      <span class="chip b2b"><span class="sw"></span><span data-i18n="hero.chipB2b">B2B <small>· 발견 · 평판 · 전환</small></span></span>
+      <span class="chip b2c"><span class="sw"></span><span data-i18n="hero.chipB2c">B2C <small>· 취향 기반 추천 · 연결</small></span></span>
     </div>
   </div>
 </section>
@@ -328,7 +365,7 @@
     <div class="sec-head">
       <div>
         <span class="division-tag b2b"><span class="sw"></span>B2B Division</span>
-        <h2 style="margin-top:16px" data-i18n="b2b.h2">기업의 성장을 설계하는<br>발견 최적화 솔루션</h2>
+        <h2 style="margin-top:16px" data-i18n="b2b.h2">기업의 성장을 설계하는<br>데이터·AI 솔루션</h2>
       </div>
       <p data-i18n="b2b.p">검색과 AI 환경에서 브랜드가 발견되고, 신뢰받고, 선택받도록 &mdash; 평판 관리부터 PR, 입시 전환, 검색 최적화까지 데이터 기반 솔루션을 제공합니다.</p>
     </div>
@@ -443,7 +480,7 @@
 
     <div style="margin-top:24px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px">
       <p class="neupai-note" style="margin-top:0" data-i18n="neupai.note">* 각 사례는 NeuPAI의 SEO&middot;AEO&middot;GEO 방법론을 적용한 프로젝트 예시입니다.</p>
-      <a class="neupai-cta" href="#contact" data-i18n="neupai.cta">컨설팅 문의 &rarr;</a>
+      <button class="neupai-cta" type="button" data-i18n="neupai.cta" onclick="openInquiry('NeuPAI')">컨설팅 문의 &rarr;</button>
     </div>
   </div>
 </section>
@@ -455,7 +492,7 @@
         <span class="division-tag b2c"><span class="sw"></span>B2C Division</span>
         <h2 style="margin-top:16px" data-i18n="b2c.h2">일상 속에서 사랑받는<br>자체 소비자 브랜드</h2>
       </div>
-      <p data-i18n="b2c.p">사람들의 검색과 취향에서 출발해, 실제 일상에 스며드는 소비자 서비스를 직접 만들고 키웁니다.</p>
+      <p data-i18n="b2c.p">사람들의 취향과 상황에서 출발해, 꼭 맞는 전통주와 여행 경험으로 연결하는 소비자 서비스를 직접 만들고 키웁니다.</p>
     </div>
 
     <div class="cards two">
@@ -504,25 +541,25 @@
         <span class="eyebrow">How we build</span>
         <h2 style="margin-top:16px" data-i18n="appr.h2">이나유가 일하는 방식</h2>
       </div>
-      <p data-i18n="appr.p">데이터에서 시작해, 발견을 설계하고, 서비스를 직접 운영합니다.</p>
+      <p data-i18n="appr.p">데이터와 취향을 이해하고, 발견과 추천을 설계하고, 직접 운영하며 키웁니다.</p>
     </div>
     <div class="appr-grid">
       <div class="appr">
-        <div class="num">01 &mdash; DATA</div>
-        <h4 data-i18n="appr.h1">검색 데이터에서 출발</h4>
-        <p data-i18n="appr.p1">사람들이 실제로 무엇을 찾는지, 검색과 의도 데이터를 분석해 시장의 빈틈과 기회를 정의합니다.</p>
+        <div class="num">01 &mdash; UNDERSTAND</div>
+        <h4 data-i18n="appr.h1">데이터와 취향을 이해</h4>
+        <p data-i18n="appr.p1">검색·행동·취향 데이터를 분석해, 시장과 사람이 진짜로 원하는 것과 아직 채워지지 않은 기회를 정의합니다.</p>
         <div class="bar"></div>
       </div>
       <div class="appr">
-        <div class="num">02 &mdash; DISCOVERY</div>
-        <h4 data-i18n="appr.h2b">발견을 설계</h4>
-        <p data-i18n="appr.p2">SEO·AEO·GEO를 아우르는 콘텐츠와 구조로, 검색엔진과 AI 답변 양쪽에서 브랜드가 선택되게 만듭니다.</p>
+        <div class="num">02 &mdash; DESIGN</div>
+        <h4 data-i18n="appr.h2b">발견과 추천을 설계</h4>
+        <p data-i18n="appr.p2">검색·미디어·AI 답변에서 브랜드가 선택되게 하고, 사람에게는 취향과 상황에 꼭 맞는 추천을 연결합니다.</p>
         <div class="bar"></div>
       </div>
       <div class="appr">
-        <div class="num">03 &mdash; OWN</div>
-        <h4 data-i18n="appr.h3">직접 운영</h4>
-        <p data-i18n="appr.p3">대행에 그치지 않고 B2B·B2C 서비스를 자체 프로덕트로 운영하며 데이터를 다시 제품에 되먹입니다.</p>
+        <div class="num">03 &mdash; OPERATE</div>
+        <h4 data-i18n="appr.h3">직접 운영·최적화</h4>
+        <p data-i18n="appr.p3">대행에 그치지 않고 B2B·B2C 서비스를 자체 프로덕트로 운영하며, 성과 데이터를 다시 제품에 반영합니다.</p>
         <div class="bar"></div>
       </div>
     </div>
@@ -539,14 +576,10 @@
       </div>
       <div class="contact-actions">
         <div class="field">
-          <div class="lab">Email</div>
-          <div class="val">inayou@gmail.com</div>
-        </div>
-        <div class="field">
           <div class="lab">Business</div>
           <div class="val">(주)이나유 · INAYOU Inc.</div>
         </div>
-        <button class="btn-primary" type="button" data-i18n="contact.btn" onclick="location.href='mailto:inayou@gmail.com?subject=%5BINAYOU%5D%20Business%20inquiry'">문의 메일 보내기 &rarr;</button>
+        <button class="btn-primary" type="button" data-i18n="contact.btn" onclick="openInquiry()">문의하기 &rarr;</button>
       </div>
     </div>
   </div>
@@ -564,7 +597,7 @@
           </svg>
           <span class="mark">INAYOU</span><span class="ko">(주)이나유</span>
         </div>
-        <p class="ft-desc" data-i18n="ft.desc">검색 데이터와 AI로 B2B·B2C 서비스를 기획하고 운영하는 벤처 스튜디오.</p>
+        <p class="ft-desc" data-i18n="ft.desc">AI와 데이터로 B2B·B2C 서비스를 기획하고 운영하는 벤처 스튜디오 — 브랜드는 발견되게, 사람은 원하는 것과 연결되게.</p>
       </div>
       <div class="ft-cols">
         <div class="ft-col">
@@ -594,20 +627,148 @@
   </div>
 </footer>
 
+<div class="modal-overlay" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="inqTitle" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3 id="inqTitle" data-i18n="inq.title">문의하기</h3>
+        <p data-i18n="inq.sub">제휴·투자·서비스 도입 등 무엇이든 남겨주세요. 담당자가 확인 후 연락드립니다.</p>
+      </div>
+      <button class="modal-close" type="button" aria-label="닫기" onclick="closeInquiry()">&times;</button>
+    </div>
+    <form class="modal-body" id="inquiryForm" novalidate>
+      <div class="form-grid">
+        <div class="fg">
+          <label data-i18n="inq.name">이름<span class="req">*</span></label>
+          <input name="name" type="text" autocomplete="name">
+          <div class="form-err" data-i18n="inq.err.name">이름을 입력해 주세요.</div>
+        </div>
+        <div class="fg">
+          <label data-i18n="inq.company">회사 / 소속</label>
+          <input name="company" type="text" autocomplete="organization">
+        </div>
+        <div class="fg">
+          <label data-i18n="inq.email">이메일<span class="req">*</span></label>
+          <input name="email" type="email" autocomplete="email">
+          <div class="form-err" data-i18n="inq.err.email">올바른 이메일을 입력해 주세요.</div>
+        </div>
+        <div class="fg">
+          <label data-i18n="inq.phone">연락처</label>
+          <input name="phone" type="tel" autocomplete="tel" placeholder="010-0000-0000">
+        </div>
+        <div class="fg full">
+          <label data-i18n="inq.type">문의 구분<span class="req">*</span></label>
+          <select name="type">
+            <option value="" data-i18n="inq.type.ph">— 선택해 주세요 —</option>
+            <option value="Dominus">Dominus · 브랜드 평판 관리</option>
+            <option value="Presfi">Presfi · PR·미디어</option>
+            <option value="Unimate">Unimate · 입시 솔루션</option>
+            <option value="NeuPAI">NeuPAI · SEO·AEO·GEO</option>
+            <option value="한술">한술 · 전통주 추천</option>
+            <option value="K-TravelMate">K-TravelMate · 여행</option>
+            <option value="기타" data-i18n="inq.type.etc">기타 · 제휴/투자</option>
+          </select>
+          <div class="form-err" data-i18n="inq.err.type">문의 구분을 선택해 주세요.</div>
+        </div>
+        <div class="fg full">
+          <label data-i18n="inq.message">문의 내용<span class="req">*</span></label>
+          <textarea name="message" rows="4"></textarea>
+          <div class="form-err" data-i18n="inq.err.message">문의 내용을 입력해 주세요.</div>
+        </div>
+        <div class="fg full">
+          <label data-i18n="inq.file">파일 첨부</label>
+          <input name="file" type="file" accept="image/*,.pdf,.doc,.docx,.hwp,.ppt,.pptx,.xls,.xlsx,.zip">
+          <div class="hint" data-i18n="inq.file.hint">최대 10MB · 이미지 / PDF / 문서</div>
+        </div>
+        <div class="fg full">
+          <label data-i18n="inq.pw">비밀번호<span class="req">*</span></label>
+          <input name="password" type="password" autocomplete="new-password">
+          <div class="hint" data-i18n="inq.pw.hint">문의 조회·수정 시 사용됩니다 (4자 이상).</div>
+          <div class="form-err" data-i18n="inq.err.pw">비밀번호를 4자 이상 입력해 주세요.</div>
+        </div>
+      </div>
+    </form>
+    <div class="modal-foot">
+      <span class="note" data-i18n="inq.privacy">* 입력하신 정보는 문의 응대 목적으로만 사용됩니다.</span>
+      <button class="modal-submit" type="submit" form="inquiryForm" data-i18n="inq.submit">문의 접수하기</button>
+    </div>
+    <div class="form-success" id="formSuccess">
+      <div class="ok">&#10003;</div>
+      <h3 data-i18n="inq.ok.title">문의가 접수되었습니다</h3>
+      <p data-i18n="inq.ok.sub">빠르게 확인하고 남겨주신 연락처로 답변드리겠습니다. 감사합니다.</p>
+    </div>
+  </div>
+</div>
+
 <script>
+  // ---------- Inquiry modal ----------
+  function openInquiry(type){
+    var m=document.getElementById('inquiryModal'); if(!m) return;
+    var form=document.getElementById('inquiryForm');
+    var foot=m.querySelector('.modal-foot');
+    form.style.display=''; foot.style.display=''; document.getElementById('formSuccess').classList.remove('show');
+    form.querySelectorAll('.fg').forEach(function(fg){ fg.classList.remove('invalid'); });
+    var btn=m.querySelector('.modal-submit'); if(btn) btn.disabled=false;
+    if(type){ var s=form.elements['type']; if(s) s.value=type; }
+    m.hidden=false;
+    requestAnimationFrame(function(){ m.classList.add('open'); });
+    document.body.style.overflow='hidden';
+    var nm=form.elements['name']; if(nm) setTimeout(function(){ nm.focus(); }, 90);
+  }
+  function closeInquiry(){
+    var m=document.getElementById('inquiryModal'); if(!m) return;
+    m.classList.remove('open'); document.body.style.overflow='';
+    setTimeout(function(){ m.hidden=true; }, 220);
+  }
+  function submitInquiry(data, file, password){
+    // Backend hook — set window.__INAYOU_SUBMIT = async (data, file, password) => {...}
+    if(typeof window.__INAYOU_SUBMIT === 'function'){ return window.__INAYOU_SUBMIT(data, file, password); }
+    console.info('[INAYOU inquiry] no backend wired yet:', data, file && file.name);
+    return Promise.resolve();
+  }
+  (function(){
+    var m=document.getElementById('inquiryModal'); if(!m) return;
+    var form=document.getElementById('inquiryForm');
+    m.addEventListener('click', function(e){ if(e.target===m) closeInquiry(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && m.classList.contains('open')) closeInquiry(); });
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var els=form.elements, ok=true;
+      form.querySelectorAll('.fg').forEach(function(fg){ fg.classList.remove('invalid'); });
+      function bad(el){ var fg=el.closest('.fg'); if(fg) fg.classList.add('invalid'); ok=false; }
+      var name=els['name'].value.trim(), email=els['email'].value.trim(), type=els['type'].value,
+          msg=els['message'].value.trim(), pw=els['password'].value;
+      if(!name) bad(els['name']);
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) bad(els['email']);
+      if(!type) bad(els['type']);
+      if(!msg) bad(els['message']);
+      if(!pw || pw.length<4) bad(els['password']);
+      if(!ok){ var fi=form.querySelector('.fg.invalid input,.fg.invalid select,.fg.invalid textarea'); if(fi) fi.focus(); return; }
+      var btn=m.querySelector('.modal-submit'); btn.disabled=true;
+      var data={ name:name, company:els['company'].value.trim(), email:email, phone:els['phone'].value.trim(), type:type, message:msg };
+      Promise.resolve(submitInquiry(data, els['file'].files[0], pw))
+        .catch(function(err){ console.warn('inquiry submit failed', err); })
+        .then(function(){
+          form.style.display='none';
+          m.querySelector('.modal-foot').style.display='none';
+          document.getElementById('formSuccess').classList.add('show');
+        });
+    });
+  })();
+
   // ---------- i18n ----------
   var I18N = {
     en: {
       "nav.about":"About","nav.b2b":"B2B","nav.b2c":"B2C","nav.approach":"Approach","nav.cta":"Contact",
-      "hero.h1":"We make brands <span class=\"g\">discoverable</span> where search meets AI",
-      "hero.lead":"INAYOU is a venture studio that plans and runs its own B2B and B2C services, powered by search data and generative AI. We make your brand the answer the moment people search.",
-      "hero.chipB2b":"B2B <small>· Discovery for business</small>",
-      "hero.chipB2c":"B2C <small>· Our own consumer brands</small>",
+      "hero.h1":"With AI and data, brands get <span class=\"g\">discovered</span> and people get <span class=\"g\">connected</span>",
+      "hero.lead":"INAYOU is a venture studio that plans and runs its own B2B and B2C services with AI and data. We help brands get discovered and trusted across search, media and AI answers, and connect people to the choice that fits their taste and moment.",
+      "hero.chipB2b":"B2B <small>· Discovery · Reputation · Conversion</small>",
+      "hero.chipB2c":"B2C <small>· Taste-based recommendation</small>",
       "ov.n1":"2<span>divisions</span>","ov.l1":"We design & operate services<br>across B2B and B2C",
       "ov.n2":"6<span>services</span>","ov.l2":"Own products, live and<br>in the pipeline",
       "ov.l3":"Discovery optimization across search,<br>AI answers and generative engines",
       "ov.l4":"In-house planning, building<br>and operating — not outsourced",
-      "b2b.h2":"Discovery-optimization<br>solutions that drive growth",
+      "b2b.h2":"Data & AI solutions<br>that drive business growth",
       "b2b.p":"So brands get found, trusted and chosen across search and AI — from reputation management and PR to admissions conversion and search optimization.",
       "card.dominus.h":"Dominus <span style=\"font-weight:600;color:var(--slate);font-size:.9rem\">dom-in-us</span>",
       "card.dominus.d":"A brand-reputation solution: AI monitors your reputation across Naver, news and social in real time, and we run everything from positive content creation to negative-post response.",
@@ -644,21 +805,44 @@
       "np.brown.m3":"as top landing content",
       "np.brown.note":"Military-criminal-law column content drives search traffic — beyond the homepage, column pages grew into key entry points.",
       "b2c.h2":"Consumer brands people<br>love in everyday life",
-      "b2c.p":"Starting from what people search for and prefer, we build and grow consumer services that fit into real daily life.",
+      "b2c.p":"Starting from people's tastes and moments, we build and grow consumer services that connect them to the right traditional liquor and travel experiences.",
       "card.hansool.h":"Hansool",
       "card.hansool.dom":"In preparation · Multilingual",
       "card.hansool.d":"Ask about taste, ABV, occasion and mood, and get Korean traditional liquor matched to your palate — a curation linking breweries, places to drink and tasting events. Supports 12 languages and global SEO.",
       "card.hansool.k":"Liquor curation · Global",
       "card.ktm.d":"A travel platform to discover and book Korea trips and Seoul events & experiences via AI search. Personalized recommendations matched to search context carry travelers to their next moment.",
       "card.ktm.k":"Travel · Booking",
-      "appr.h2":"How INAYOU works","appr.p":"We start from data, design discovery, and operate the services ourselves.",
-      "appr.h1":"Start from search data","appr.p1":"We analyze search and intent data to define market gaps and opportunities from what people actually look for.",
-      "appr.h2b":"Design discovery","appr.p2":"With content and structure spanning SEO·AEO·GEO, we make brands the pick in both search engines and AI answers.",
-      "appr.h3":"Operate it ourselves","appr.p3":"Beyond agency work, we run B2B and B2C services as our own products and feed the data back into them.",
+      "appr.h2":"How INAYOU works","appr.p":"We understand data and taste, design discovery and recommendation, and operate it all ourselves.",
+      "appr.h1":"Understand data & taste","appr.p1":"We analyze search, behavior and taste data to define what markets and people truly want — and the gaps still unfilled.",
+      "appr.h2b":"Design discovery & recommendation","appr.p2":"We make brands the pick across search, media and AI answers, and connect people to recommendations that fit their taste and moment.",
+      "appr.h3":"Operate & optimize","appr.p3":"Beyond agency work, we run B2B and B2C services as our own products and feed performance data back into them.",
       "contact.h2":"Let's talk about what<br>we can build together",
       "contact.p":"Partnership, investment, adoption — every inquiry is welcome. Join the growth INAYOU builds with search and AI.",
-      "contact.btn":"Send us an email &rarr;",
-      "ft.desc":"A venture studio planning and operating B2B and B2C services with search data and AI.",
+      "contact.btn":"Get in touch &rarr;",
+      "inq.title":"Contact us",
+      "inq.sub":"Partnership, investment, adoption — tell us anything. We'll review and get back to you.",
+      "inq.name":"Name<span class=\"req\">*</span>",
+      "inq.company":"Company / Affiliation",
+      "inq.email":"Email<span class=\"req\">*</span>",
+      "inq.phone":"Phone",
+      "inq.type":"Inquiry type<span class=\"req\">*</span>",
+      "inq.type.ph":"— Please select —",
+      "inq.type.etc":"Other · Partnership / Investment",
+      "inq.message":"Message<span class=\"req\">*</span>",
+      "inq.file":"Attachment",
+      "inq.file.hint":"Up to 10MB · image / PDF / document",
+      "inq.pw":"Password<span class=\"req\">*</span>",
+      "inq.pw.hint":"Used to look up or edit your inquiry later (4+ characters).",
+      "inq.privacy":"* Your information is used only to respond to your inquiry.",
+      "inq.submit":"Submit inquiry",
+      "inq.err.name":"Please enter your name.",
+      "inq.err.email":"Please enter a valid email.",
+      "inq.err.type":"Please select an inquiry type.",
+      "inq.err.message":"Please enter your message.",
+      "inq.err.pw":"Please enter a password of 4+ characters.",
+      "inq.ok.title":"Your inquiry has been received",
+      "inq.ok.sub":"We'll review it and reply to the contact you provided. Thank you.",
+      "ft.desc":"A venture studio planning and operating B2B and B2C services with AI and data — brands get discovered, people get connected to what they want.",
       "ft.about":"About","ft.approach":"Approach","ft.contact":"Contact",
       "ft.copy":"© 2026 INAYOU Inc. <span class=\"mock-note\">· Demo mockup — descriptions and figures are examples.</span>",
       "ft.theme":"◐ Theme"
