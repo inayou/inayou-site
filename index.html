@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>(주)이나유 INAYOU — AI·데이터로 발견과 연결을 설계하는 벤처 스튜디오</title>
-<meta name="description" content="(주)이나유는 AI와 데이터로 브랜드의 발견·평판·전환과 사람의 취향 기반 추천을 설계·운영하는 벤처 스튜디오입니다. Dominus·Presfi·Unimate·NeuPAI·한술·K-TravelMate.">
+<meta name="description" content="(주)이나유는 AI와 데이터로 B2B·B2C 서비스를 직접 기획·운영하는 벤처 스튜디오입니다. 브랜드의 발견·평판·PR부터 사람의 취향 추천·전환까지. Dominus·Presfi·Unimate·NeuPAI·한술·K-TravelMate.">
 <meta property="og:title" content="(주)이나유 INAYOU">
 <meta property="og:description" content="AI와 데이터로, 브랜드는 발견되게 사람은 연결되게.">
 <meta property="og:type" content="website">
@@ -744,14 +744,19 @@
       if(!msg) bad(els['message']);
       if(!pw || pw.length<4) bad(els['password']);
       if(!ok){ var fi=form.querySelector('.fg.invalid input,.fg.invalid select,.fg.invalid textarea'); if(fi) fi.focus(); return; }
-      var btn=m.querySelector('.modal-submit'); btn.disabled=true;
+      var btn=m.querySelector('.modal-submit'); btn.disabled=true; btn.textContent='보내는 중…';
+      var note=m.querySelector('.modal-foot .note');
       var data={ name:name, company:els['company'].value.trim(), email:email, phone:els['phone'].value.trim(), type:type, message:msg };
       Promise.resolve(submitInquiry(data, els['file'].files[0], pw))
-        .catch(function(err){ console.warn('inquiry submit failed', err); })
         .then(function(){
           form.style.display='none';
           m.querySelector('.modal-foot').style.display='none';
           document.getElementById('formSuccess').classList.add('show');
+        })
+        .catch(function(err){
+          console.warn('inquiry submit failed', err);
+          btn.disabled=false; btn.textContent='다시 보내기';
+          if(note){ note.textContent='전송에 실패했습니다. 잠시 후 다시 시도해 주세요.'; note.style.color='var(--b2c)'; }
         });
     });
   })();
@@ -940,18 +945,18 @@
   // ===== Firebase inquiry backend (Firestore + Storage) =====
   // 설정값을 넣기 전까지는(apiKey가 "PASTE"로 시작) 아무 동작도 하지 않습니다.
   const firebaseConfig = {
-    apiKey: "PASTE_API_KEY",
-    authDomain: "PASTE_PROJECT.firebaseapp.com",
-    projectId: "PASTE_PROJECT_ID",
-    storageBucket: "PASTE_PROJECT.appspot.com",
-    messagingSenderId: "PASTE_SENDER_ID",
-    appId: "PASTE_APP_ID"
+    apiKey: "AIzaSyChqo0-PfS__bZJ4jqQFRcT-_fTZdv4aTA",
+    authDomain: "inayou-7db4a.firebaseapp.com",
+    projectId: "inayou-7db4a",
+    storageBucket: "inayou-7db4a.firebasestorage.app",
+    messagingSenderId: "190026217045",
+    appId: "1:190026217045:web:05438283ff18b608e5c6dc"
   };
 
   if (!firebaseConfig.apiKey.startsWith("PASTE")) {
     const [{ initializeApp },
            { getFirestore, collection, addDoc, serverTimestamp },
-           { getStorage, ref, uploadBytes, getDownloadURL }] = await Promise.all([
+           { getStorage, ref, uploadBytes }] = await Promise.all([
       import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"),
       import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"),
       import("https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js")
@@ -964,18 +969,18 @@
       return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
     }
     window.__INAYOU_SUBMIT = async (data, file, password) => {
-      let fileUrl = null, filePath = null;
+      let filePath = null, fileName = null;
       if (file) {
         if (file.size > 10 * 1024 * 1024) throw new Error('첨부 파일은 10MB 이하만 가능합니다.');
+        fileName = file.name;
         filePath = 'inquiries/' + Date.now() + '_' + file.name.replace(/[^\w.\-]/g, '_');
-        const snap = await uploadBytes(ref(storage, filePath), file);
-        fileUrl = await getDownloadURL(snap.ref);
+        await uploadBytes(ref(storage, filePath), file);
       }
       const passwordHash = await sha256(password);
       await addDoc(collection(db, 'inquiries'), {
         name: data.name, company: data.company || '', email: data.email,
         phone: data.phone || '', type: data.type, message: data.message,
-        passwordHash, fileUrl, filePath, status: 'new', createdAt: serverTimestamp()
+        passwordHash, filePath, fileName, status: 'new', createdAt: serverTimestamp()
       });
     };
   }
