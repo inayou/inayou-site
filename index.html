@@ -936,5 +936,50 @@
   })();
 </script>
 
+<script type="module">
+  // ===== Firebase inquiry backend (Firestore + Storage) =====
+  // 설정값을 넣기 전까지는(apiKey가 "PASTE"로 시작) 아무 동작도 하지 않습니다.
+  const firebaseConfig = {
+    apiKey: "PASTE_API_KEY",
+    authDomain: "PASTE_PROJECT.firebaseapp.com",
+    projectId: "PASTE_PROJECT_ID",
+    storageBucket: "PASTE_PROJECT.appspot.com",
+    messagingSenderId: "PASTE_SENDER_ID",
+    appId: "PASTE_APP_ID"
+  };
+
+  if (!firebaseConfig.apiKey.startsWith("PASTE")) {
+    const [{ initializeApp },
+           { getFirestore, collection, addDoc, serverTimestamp },
+           { getStorage, ref, uploadBytes, getDownloadURL }] = await Promise.all([
+      import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"),
+      import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"),
+      import("https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js")
+    ]);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const storage = getStorage(app);
+    async function sha256(str){
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+    }
+    window.__INAYOU_SUBMIT = async (data, file, password) => {
+      let fileUrl = null, filePath = null;
+      if (file) {
+        if (file.size > 10 * 1024 * 1024) throw new Error('첨부 파일은 10MB 이하만 가능합니다.');
+        filePath = 'inquiries/' + Date.now() + '_' + file.name.replace(/[^\w.\-]/g, '_');
+        const snap = await uploadBytes(ref(storage, filePath), file);
+        fileUrl = await getDownloadURL(snap.ref);
+      }
+      const passwordHash = await sha256(password);
+      await addDoc(collection(db, 'inquiries'), {
+        name: data.name, company: data.company || '', email: data.email,
+        phone: data.phone || '', type: data.type, message: data.message,
+        passwordHash, fileUrl, filePath, status: 'new', createdAt: serverTimestamp()
+      });
+    };
+  }
+</script>
+
 </body>
 </html>
