@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>프로필 · INAYOU</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3Crect%20x='3.2'%20y='3.2'%20width='33.6'%20height='33.6'%20rx='10'%20fill='none'%20stroke='%231C6E68'%20stroke-width='2.6'/%3E%3Cpolygon%20points='20,7.5%2024.6,20%2015.4,20'%20fill='%231C6E68'/%3E%3Cpolygon%20points='20,32.5%2024.6,20%2015.4,20'%20fill='%23E05B33'/%3E%3Ccircle%20cx='20'%20cy='20'%20r='2.6'%20fill='%23161B22'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#161B22; --ink-soft:#2A313B; --slate:#5C6675; --slate-2:#828C99;
+    --paper:#FAF9F6; --surface:#FFFFFF; --line:#E7E4DD; --line-strong:#D8D4CB;
+    --b2b:#1C6E68; --b2b-soft:#E4F0EE; --b2b-ink:#0F3B37; --b2c:#E05B33; --b2c-soft:#FBEAE2;
+    --shadow:0 1px 2px rgba(22,27,34,.04), 0 14px 34px -14px rgba(22,27,34,.16);
+    --sans:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --ink:#F1EFE9; --ink-soft:#D5D2CA; --slate:#9AA3B0; --slate-2:#727C89;
+    --paper:#0E1116; --surface:#161B22; --line:#252B34; --line-strong:#333B46;
+    --b2b:#4FC9BE; --b2b-soft:#123330; --b2b-ink:#B7ECE6; --b2c:#FF8258; --b2c-soft:#331810;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 40px -18px rgba(0,0,0,.7);
+  }}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;letter-spacing:-.01em;word-break:keep-all;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  header.top{border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--paper) 85%,transparent);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
+  .top-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand svg{width:28px;height:28px}
+  .brand b{font-weight:800;letter-spacing:.14em;font-size:.98rem}
+  .brand span{font-size:.72rem;color:var(--slate);letter-spacing:.18em;text-transform:uppercase;padding-left:8px;border-left:1px solid var(--line-strong)}
+  .signout{display:none;font-size:.82rem;color:var(--slate);border:1px solid var(--line-strong);background:none;padding:7px 13px;border-radius:999px;cursor:pointer;font-family:inherit}
+  .signout:hover{color:var(--ink);border-color:var(--ink)}
+
+  .state{min-height:72vh;display:flex;align-items:center;justify-content:center;padding:60px 24px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);width:100%;max-width:440px;padding:38px 32px;text-align:center}
+  .card .lock{width:52px;height:52px;border-radius:14px;background:var(--b2b-soft);color:var(--b2b-ink);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 18px}
+  .card h1{font-size:1.4rem;font-weight:800;letter-spacing:-.02em}
+  .card p.sub{color:var(--slate);font-size:.92rem;margin-top:10px;line-height:1.6}
+  form{margin-top:22px;display:flex;flex-direction:column;gap:11px;text-align:left}
+  label{font-size:.8rem;font-weight:700;color:var(--ink-soft)}
+  input[type=email]{font-family:inherit;font-size:.98rem;color:var(--ink);background:var(--paper);border:1px solid var(--line-strong);border-radius:12px;padding:13px 14px;width:100%;transition:border-color .16s}
+  input[type=email]:focus{outline:none;border-color:var(--b2b)}
+  .btn{background:var(--b2b);color:#fff;font-weight:700;font-size:.98rem;padding:14px;border:none;border-radius:12px;cursor:pointer;font-family:inherit;transition:transform .15s,opacity .15s}
+  .btn:hover{transform:translateY(-2px)} .btn[disabled]{opacity:.55;transform:none;cursor:default}
+  .msg{font-size:.86rem;margin-top:4px;min-height:1.2em;line-height:1.5}
+  .msg.err{color:var(--b2c)} .msg.ok{color:var(--b2b)}
+  .hint{font-size:.76rem;color:var(--slate-2);margin-top:14px;line-height:1.55}
+  .spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--b2b);border-radius:50%;margin:0 auto;animation:sp .8s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.spin{animation:none}}
+
+  /* profile */
+  #profile{display:none;padding:48px 0 90px}
+  .p-head{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:30px}
+  .p-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--b2b)}
+  .p-name{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;margin-top:10px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .p-name small{font-size:1rem;font-weight:600;color:var(--slate);letter-spacing:0}
+  .p-headline{color:var(--ink-soft);font-size:1.05rem;margin-top:12px;line-height:1.6}
+  .p-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .pill{font-size:.8rem;font-weight:600;padding:6px 13px;border-radius:999px;background:var(--b2b-soft);color:var(--b2b-ink)}
+  .pill.exp{background:var(--b2c-soft);color:var(--b2c)}
+  section.blk{margin-top:38px}
+  .blk h2{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+  .blk h2::after{content:"";flex:1;height:1px;background:var(--line)}
+  .summary{font-size:1.02rem;color:var(--ink-soft);line-height:1.75}
+  ul.hl{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:4px}
+  ul.hl li{position:relative;padding-left:20px;color:var(--ink-soft);line-height:1.6}
+  ul.hl li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--b2b)}
+  .exp-item{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:16px 0;border-top:1px solid var(--line)}
+  .exp-item:first-child{border-top:none}
+  .exp-period{font-size:.82rem;color:var(--slate);font-variant-numeric:tabular-nums;font-weight:600}
+  .exp-company{font-size:1.08rem;font-weight:800;letter-spacing:-.01em}
+  .exp-role{font-size:.88rem;color:var(--b2b);font-weight:600;margin-top:2px}
+  .exp-points{list-style:none;margin-top:8px;display:flex;flex-direction:column;gap:5px}
+  .exp-points li{font-size:.9rem;color:var(--ink-soft);padding-left:14px;position:relative;line-height:1.55}
+  .exp-points li::before{content:"–";position:absolute;left:0;color:var(--slate-2)}
+  @media (max-width:620px){.exp-item{grid-template-columns:1fr;gap:6px}}
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:620px){.proj-grid{grid-template-columns:1fr}}
+  .proj{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px}
+  .proj h3{font-size:1rem;font-weight:800;letter-spacing:-.01em}
+  .proj .d{font-size:.88rem;color:var(--ink-soft);margin-top:7px;line-height:1.55}
+  .proj .s{font-size:.78rem;color:var(--slate);margin-top:9px}
+  .proj .r{font-size:.82rem;color:var(--b2b-ink);background:var(--b2b-soft);border-radius:9px;padding:8px 10px;margin-top:10px;line-height:1.5;font-weight:600}
+  .cap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:620px){.cap{grid-template-columns:1fr}}
+  .cap-item{border-left:2px solid var(--b2b);padding-left:14px}
+  .cap-item h4{font-size:.98rem;font-weight:700}
+  .cap-item p{font-size:.87rem;color:var(--slate);margin-top:5px;line-height:1.55}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:.82rem;font-weight:600;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);padding:8px 13px;border-radius:999px}
+  .edu-item{font-size:.95rem}.edu-item b{font-weight:700}.edu-item span{color:var(--slate);font-size:.85rem;margin-left:8px}
+  .p-note{margin-top:40px;font-size:.82rem;color:var(--slate-2);border-top:1px solid var(--line);padding-top:18px}
+  :focus-visible{outline:2px solid var(--b2b);outline-offset:3px;border-radius:5px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="3.2" y="3.2" width="33.6" height="33.6" rx="10" fill="none" stroke="var(--b2b)" stroke-width="2.6"/><polygon points="20,7.5 24.6,20 15.4,20" fill="var(--b2b)"/><polygon points="20,32.5 24.6,20 15.4,20" fill="var(--b2c)"/><circle cx="20" cy="20" r="2.6" fill="var(--ink)"/></svg>
+      <b>INAYOU</b><span>Profile</span>
+    </a>
+    <button class="signout" id="signout" type="button">로그아웃</button>
+  </div>
+</header>
+
+<!-- Loading -->
+<div class="state" id="loading"><div class="spin" role="status" aria-label="확인 중"></div></div>
+
+<!-- Sign-in gate -->
+<div class="state" id="gate" style="display:none">
+  <div class="card">
+    <div class="lock" aria-hidden="true">&#128274;</div>
+    <h1>임직원 전용 프로필</h1>
+    <p class="sub">이 페이지는 <b>기업 도메인 이메일 인증</b> 후 열람할 수 있습니다. 회사 이메일을 입력하시면 인증 링크를 보내드립니다.</p>
+    <form id="signinForm" novalidate>
+      <label for="email">기업 이메일</label>
+      <input id="email" name="email" type="email" placeholder="name@company.com" autocomplete="email" required>
+      <button class="btn" id="sendBtn" type="submit">인증 링크 받기</button>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    </form>
+    <p class="hint">gmail·naver·daum·hanmail 등 개인 메일은 인증되지 않습니다. 인증 링크는 입력하신 메일함에서 확인하세요.</p>
+  </div>
+</div>
+
+<!-- Blocked (personal email) -->
+<div class="state" id="blocked" style="display:none">
+  <div class="card">
+    <div class="lock" style="background:var(--b2c-soft);color:var(--b2c)" aria-hidden="true">&#9888;</div>
+    <h1>기업 이메일이 필요합니다</h1>
+    <p class="sub" id="blockedMsg">개인 이메일(gmail·naver 등)로는 열람할 수 없습니다. 회사 도메인 이메일로 다시 인증해 주세요.</p>
+    <button class="btn" id="blockedRetry" type="button" style="margin-top:20px">다른 이메일로 인증</button>
+  </div>
+</div>
+
+<!-- Profile content (injected after auth) -->
+<main id="profile"><div class="wrap" id="profileInner"></div></main>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyChqo0-PfS__bZJ4jqQFRcT-_fTZdv4aTA",
+    authDomain: "inayou-7db4a.firebaseapp.com",
+    projectId: "inayou-7db4a",
+    storageBucket: "inayou-7db4a.firebasestorage.app",
+    messagingSenderId: "190026217045",
+    appId: "1:190026217045:web:05438283ff18b608e5c6dc"
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const FREE = new Set(["gmail.com","googlemail.com","naver.com","daum.net","hanmail.net","nate.com","kakao.com","hotmail.com","outlook.com","live.com","live.co.kr","msn.com","yahoo.com","yahoo.co.kr","ymail.com","icloud.com","me.com","mac.com","aol.com","proton.me","protonmail.com","pm.me","gmx.com","gmx.net","zoho.com","yandex.com","mail.com","mail.ru","qq.com","163.com","126.com","hey.com","tutanota.com","fastmail.com","hanmir.com","korea.com","empas.com","paran.com","dreamwiz.com"]);
+  const isCorporate = (email)=>{ const d=(email||"").split("@")[1]; return !!d && !FREE.has(d.toLowerCase()); };
+
+  const $ = id=>document.getElementById(id);
+  const show = id=>{ ["loading","gate","blocked","profile"].forEach(s=>$(s).style.display = s===id ? (s==="profile"?"block":"flex") : "none"); };
+  const actionCodeSettings = { url: window.location.origin + "/profile", handleCodeInApp: true };
+
+  // Complete email-link sign-in if returning from the email
+  async function completeLinkSignIn(){
+    if(!isSignInWithEmailLink(auth, window.location.href)) return false;
+    let email = null; try{ email = localStorage.getItem("inayouProfileEmail"); }catch(e){}
+    if(!email) email = window.prompt("인증을 완료하려면 이메일을 다시 입력해 주세요");
+    if(!email) return false;
+    try{
+      await signInWithEmailLink(auth, email, window.location.href);
+      try{ localStorage.removeItem("inayouProfileEmail"); }catch(e){}
+      history.replaceState(null, "", "/profile");
+      return true;
+    }catch(e){
+      history.replaceState(null, "", "/profile");
+      $("msg").className="msg err"; $("msg").textContent="인증에 실패했습니다. 다시 시도해 주세요. ("+(e.code||e.message)+")";
+      return false;
+    }
+  }
+
+  // Sign-in form
+  $("signinForm").addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const email = $("email").value.trim();
+    const msg = $("msg");
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ msg.className="msg err"; msg.textContent="올바른 이메일을 입력해 주세요."; return; }
+    if(!isCorporate(email)){ msg.className="msg err"; msg.textContent="개인 이메일은 사용할 수 없습니다. 회사 도메인 이메일을 입력해 주세요."; return; }
+    const btn=$("sendBtn"); btn.disabled=true; msg.className="msg"; msg.textContent="인증 링크를 보내는 중…";
+    try{
+      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+      try{ localStorage.setItem("inayouProfileEmail", email); }catch(e){}
+      msg.className="msg ok"; msg.textContent="✓ "+email+" 로 인증 링크를 보냈습니다. 메일함(스팸함 포함)을 확인해 링크를 눌러주세요.";
+    }catch(err){
+      btn.disabled=false; msg.className="msg err"; msg.textContent="전송 실패: "+(err.code||err.message);
+    }
+  });
+  $("blockedRetry").addEventListener("click", ()=> signOut(auth));
+  $("signout").addEventListener("click", ()=> signOut(auth));
+
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+  function render(d){
+    const exp = (d.experience||[]).map(x=>`<div class="exp-item"><div class="exp-period">${esc(x.period)}</div><div><div class="exp-company">${esc(x.company)}</div><div class="exp-role">${esc(x.role)}</div><ul class="exp-points">${(x.points||[]).map(p=>`<li>${esc(p)}</li>`).join("")}</ul></div></div>`).join("");
+    const proj = (d.projects||[]).map(x=>`<div class="proj"><h3>${esc(x.title)}</h3><div class="d">${esc(x.desc)}</div><div class="s">${esc(x.stack)}</div><div class="r">${esc(x.result)}</div></div>`).join("");
+    const cap = (d.capabilities||[]).map(x=>`<div class="cap-item"><h4>${esc(x.title)}</h4><p>${esc(x.detail)}</p></div>`).join("");
+    const chips = (d.stack||[]).map(x=>`<span class="chip">${esc(x)}</span>`).join("");
+    const hl = (d.highlights||[]).map(x=>`<li>${esc(x)}</li>`).join("");
+    const edu = (d.education||[]).map(x=>`<div class="edu-item"><b>${esc(x.school)}</b><span>${esc(x.detail)} · ${esc(x.period)}</span></div>`).join("");
+    const certs = (d.certs||[]).map(x=>`<span class="chip">${esc(x)}</span>`).join("");
+    $("profileInner").innerHTML = `
+      <div class="p-head">
+        <div class="p-eyebrow">Profile</div>
+        <div class="p-name">${esc(d.name)} ${d.nameEn?`<small>${esc(d.nameEn)}</small>`:""}</div>
+        <div class="p-headline">${esc(d.headline)}</div>
+        <div class="p-meta">${d.current?`<span class="pill">${esc(d.current)}</span>`:""}${d.totalExp?`<span class="pill exp">${esc(d.totalExp)}</span>`:""}</div>
+      </div>
+      ${d.summary?`<section class="blk"><h2>Summary</h2><p class="summary">${esc(d.summary)}</p></section>`:""}
+      ${hl?`<section class="blk"><h2>Highlights</h2><ul class="hl">${hl}</ul></section>`:""}
+      ${exp?`<section class="blk"><h2>Experience</h2>${exp}</section>`:""}
+      ${proj?`<section class="blk"><h2>Selected Projects</h2><div class="proj-grid">${proj}</div></section>`:""}
+      ${cap?`<section class="blk"><h2>Capabilities</h2><div class="cap">${cap}</div></section>`:""}
+      ${chips?`<section class="blk"><h2>Stack</h2><div class="chips">${chips}</div></section>`:""}
+      ${edu?`<section class="blk"><h2>Education</h2>${edu}</section>`:""}
+      ${certs?`<section class="blk"><h2>Certifications & Awards</h2><div class="chips">${certs}</div></section>`:""}
+      ${d.languages?`<section class="blk"><h2>Languages</h2><p class="summary">${esc(d.languages)}</p></section>`:""}
+      ${d.note?`<div class="p-note">${esc(d.note)}</div>`:""}
+    `;
+  }
+
+  async function loadProfile(){
+    try{
+      const snap = await getDoc(doc(db,"content","profile"));
+      if(snap.exists()){ render(snap.data()); $("signout").style.display="inline-block"; show("profile"); }
+      else { $("blockedMsg").textContent="프로필 콘텐츠가 아직 등록되지 않았습니다. 관리자에게 문의해 주세요."; show("blocked"); }
+    }catch(e){
+      // Firestore rules rejected (e.g. domain not allowed) or other error
+      $("blockedMsg").textContent="열람 권한이 없습니다. 등록된 기업 도메인 이메일로 인증했는지 확인해 주세요.";
+      show("blocked");
+    }
+  }
+
+  onAuthStateChanged(auth, (user)=>{
+    if(user && user.email){
+      if(isCorporate(user.email)){ loadProfile(); }
+      else { $("blockedMsg").textContent="개인 이메일("+user.email+")로는 열람할 수 없습니다. 회사 도메인 이메일로 다시 인증해 주세요."; $("signout").style.display="inline-block"; show("blocked"); }
+    } else {
+      $("signout").style.display="none"; show("gate");
+    }
+  });
+
+  (async ()=>{ await completeLinkSignIn(); })();
+</script>
+</body>
+</html>
