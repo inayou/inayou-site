@@ -83,6 +83,18 @@
   .proj .d{font-size:.88rem;color:var(--ink-soft);margin-top:7px;line-height:1.55}
   .proj .s{font-size:.78rem;color:var(--slate);margin-top:9px}
   .proj .r{font-size:.82rem;color:var(--b2b-ink);background:var(--b2b-soft);border-radius:9px;padding:8px 10px;margin-top:10px;line-height:1.5;font-weight:600}
+  .svc-intro{font-size:.95rem;color:var(--ink-soft);line-height:1.7;margin-bottom:16px}
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:620px){.svc-grid{grid-template-columns:1fr}}
+  .svc{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .svc-shot{display:block;width:100%;height:150px;object-fit:cover;object-position:top center;border-bottom:1px solid var(--line);background:var(--paper)}
+  .svc-body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+  .svc-tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--b2b)}
+  .svc h3{font-size:1.02rem;font-weight:800;margin-top:4px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .svc h3 a{font-size:.76rem;font-weight:600;color:var(--slate);text-decoration:none}
+  .svc h3 a:hover{color:var(--ink);text-decoration:underline}
+  .svc .d{font-size:.86rem;color:var(--ink-soft);margin-top:7px;line-height:1.55;flex:1}
+  .svc .m{font-size:.8rem;color:var(--b2b-ink);background:var(--b2b-soft);border-radius:8px;padding:7px 10px;margin-top:10px;font-weight:600;line-height:1.5}
   .cap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   @media (max-width:620px){.cap{grid-template-columns:1fr}}
   .cap-item{border-left:2px solid var(--b2b);padding-left:14px}
@@ -206,6 +218,7 @@
     const cap = (d.capabilities||[]).map(x=>`<div class="cap-item"><h4>${esc(x.title)}</h4><p>${esc(x.detail)}</p></div>`).join("");
     const chips = (d.stack||[]).map(x=>`<span class="chip">${esc(x)}</span>`).join("");
     const hl = (d.highlights||[]).map(x=>`<li>${esc(x)}</li>`).join("");
+    const svc = (d.services||[]).map(x=>`<div class="svc">${x.image?`<img class="svc-shot" src="${esc(x.image)}" alt="${esc(x.name)} 화면" loading="lazy">`:""}<div class="svc-body"><div class="svc-tag">${esc(x.tag)}</div><h3>${esc(x.name)} ${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(String(x.url).replace(/^https?:\/\//,"").replace(/\/#.*$/,""))}</a>`:""}</h3><div class="d">${esc(x.desc)}</div>${x.metric?`<div class="m">${esc(x.metric)}</div>`:""}</div></div>`).join("");
     const edu = (d.education||[]).map(x=>`<div class="edu-item"><b>${esc(x.school)}</b><span>${esc(x.detail)} · ${esc(x.period)}</span></div>`).join("");
     const certs = (d.certs||[]).map(x=>`<span class="chip">${esc(x)}</span>`).join("");
     $("profileInner").innerHTML = `
@@ -217,6 +230,7 @@
       </div>
       ${d.summary?`<section class="blk"><h2>Summary</h2><p class="summary">${esc(d.summary)}</p></section>`:""}
       ${hl?`<section class="blk"><h2>Highlights</h2><ul class="hl">${hl}</ul></section>`:""}
+      ${svc?`<section class="blk"><h2>(주)이나유 · Selected Work</h2>${d.servicesIntro?`<p class="svc-intro">${esc(d.servicesIntro)}</p>`:""}<div class="svc-grid">${svc}</div></section>`:""}
       ${exp?`<section class="blk"><h2>Experience</h2>${exp}</section>`:""}
       ${proj?`<section class="blk"><h2>Selected Projects</h2><div class="proj-grid">${proj}</div></section>`:""}
       ${cap?`<section class="blk"><h2>Capabilities</h2><div class="cap">${cap}</div></section>`:""}
