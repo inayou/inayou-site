@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /profile
+Disallow: /profile/
 
 Sitemap: https://inayou.io/sitemap.xml
